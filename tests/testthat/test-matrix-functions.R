@@ -11,11 +11,16 @@ test_that("rref", {
 
 test_that("eps", {
 
+    expect_equal(eps(.Machine$double.xmin / 100), .Machine$double.xmin)
     expect_equal(eps(3), 4.44089209850063e-16)
     expect_equal(eps(1:3), 4.44089209850063e-16)
     expect_equal(eps(-1), 2.22044604925031e-16)
     expect_equal(eps(matrix(0:3, 2, 2)), 2.22044604925031e-16)
     expect_error(eps(NA))
     expect_error(eps("NA"))
+
+})
+
+test_that("array_to_latex", {
 
 })
