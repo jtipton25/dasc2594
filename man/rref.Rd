@@ -2,7 +2,7 @@
 % Please edit documentation in R/rref.R
 \name{rref}
 \alias{rref}
-\title{rref}
+\title{Compute the reduced row echelon form}
 \usage{
 rref(A)
 }
@@ -13,7 +13,7 @@ rref(A)
 A matrix in reduced row echelon form
 }
 \description{
-rref
+Compute the reduced row echelon form
 }
 \examples{
 
