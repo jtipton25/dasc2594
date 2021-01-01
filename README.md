@@ -11,7 +11,8 @@ status](https://github.com/jtipton25/dasc2594/workflows/R-CMD-check/badge.svg)](
 coverage](https://codecov.io/gh/jtipton25/dasc2594/branch/master/graph/badge.svg)](https://codecov.io/gh/jtipton25/dasc2594?branch=master)
 <!-- badges: end -->
 
-The goal of dasc2594 is to …
+The goal of the `dasc2594` is to provide `R` code and functions for use
+in DASC 2594 Multivariable Math for Data Scientists.
 
 ## Installation
 

@@ -31,7 +31,6 @@ test_that("array_to_latex", {
     expect_error(array_to_latex(1:10))
     expect_error(array_to_latex(array(1:20, dim = c(2, 5, 2))))
     expect_error(array_to_latex(1))
-    expect_error(array_to_latex(matrix(1, 1, 1)))
 
     expect_identical(array_to_latex(matrix("A", 2, 2)), "\\begin{pmatrix} A & A \\\\ A & A \\end{pmatrix}")
     expect_identical(array_to_latex(matrix(1:4, 2, 2)), "\\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}")
