@@ -13,6 +13,11 @@ test_that("rref", {
     A <- rbind(A, 0)
     expect_equal(rref(A), matrix(c(1, 0, 0, 0, 0, 1, 0, 0), 4, 2))
 
+    A <- matrix(1:9 * 10^-200, 3, 3)
+    A[2, 2] <- 2e210
+    expect_warning(rref(A))
+
+
 })
 
 test_that("eps", {

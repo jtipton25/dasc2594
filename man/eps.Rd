@@ -15,3 +15,4 @@ An error tolerance
 \description{
 Compute epsilon
 }
+\keyword{internal}

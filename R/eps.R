@@ -3,7 +3,7 @@
 #' @param x An numerix scalar or vector
 #'
 #' @return An error tolerance
-#'
+#' @keywords internal
 eps <- function(x = 1.0) {
     # from https://raw.githubusercontent.com/cran/pracma/master/R/eps.R
     stopifnot(is.numeric(x))
