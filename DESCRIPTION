@@ -2,7 +2,7 @@ Package: dasc2594
 Type: Package
 Title: Package for DASC 2594 Multivariable Math for Data Science
 Version: 0.1.0
-Date: 2020-08-11
+Date: 2020-12-31
 Authors@R: person("John", "Tipton", email = "jrtipton@uark.edu", 
     role = c("aut", "cre"))
 Description: A set of functions for use in DASC 2594
