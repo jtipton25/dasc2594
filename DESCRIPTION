@@ -5,7 +5,7 @@ Version: 0.1.0
 Date: 2020-08-11
 Authors@R: person("John", "Tipton", email = "jrtipton@uark.edu", 
     role = c("aut", "cre"))
-Description: This package contains functions for use in DASC 2594
+Description: A set of functions for use in DASC 2594
     Multivariable Math for Data Science at the University of 
     Arkansas.
 License: GPL (>=3)
