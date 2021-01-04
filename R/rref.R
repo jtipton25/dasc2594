@@ -45,8 +45,8 @@ rref <- function(A) {
             r <- r + 1
         }
     }
-    if (any(abs(A) < tol))
-        warning("The algorithm might be numerically unstable. Treat the output with skepticism.")
+    # if (any(abs(A) < tol))
+    #     warning("The algorithm might be numerically unstable. Treat the output with skepticism.")
     A[abs(A) < tol] <- 0
     return(A)
 }

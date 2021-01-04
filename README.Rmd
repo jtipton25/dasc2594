@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # dasc2594
 
 <!-- badges: start -->
-  [![R build status](https://github.com/jtipton25/dasc2594/workflows/R-CMD-check/badge.svg)](https://github.com/jtipton25/dasc2594/actions)
+[![R build status](https://github.com/jtipton25/dasc2594/workflows/R-CMD-check/badge.svg)](https://github.com/jtipton25/dasc2594/actions)
 [![Codecov test coverage](https://codecov.io/gh/jtipton25/dasc2594/branch/master/graph/badge.svg)](https://codecov.io/gh/jtipton25/dasc2594?branch=master)
 <!-- badges: end -->
 

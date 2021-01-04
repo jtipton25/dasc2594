@@ -14,6 +14,18 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    purrr,
+    ggplot2,
+    gganimate
 Suggests: 
-    testthat,
-    covr
+    covr,
+    datasauRus,
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+URL: https://github.com/jtipton25/dasc2594
+BugReports: https://github.com/jtipton25/dasc2594/issues
+    
