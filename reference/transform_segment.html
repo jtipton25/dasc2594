@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check if value is an integer or integer-like — is_integer • dasc2594</title>
+<title>Transform Coordinates of Segment — transform_segment • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Check if value is an integer or integer-like — is_integer" />
-<meta property="og:description" content="this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)" />
+<meta property="og:title" content="Transform Coordinates of Segment — transform_segment" />
+<meta property="og:description" content="Helper function to apply transform_df_coords() to the dataframe constructed
+by construct_grid() or similar." />
 
 
 
@@ -108,30 +109,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check if value is an integer or integer-like</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
-    <div class="hidden name"><code>is_integer.Rd</code></div>
+    <h1>Transform Coordinates of Segment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/construct_transform_coordinates.R'><code>R/construct_transform_coordinates.R</code></a></small>
+    <div class="hidden name"><code>transform_segment.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)</p>
+    <p>Helper function to apply <code><a href='transform_df_coords.html'>transform_df_coords()</a></code> to the dataframe constructed
+by <code><a href='construct_grid.html'>construct_grid()</a></code> or similar.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_integer</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>transform_segment</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>m</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>is the input</p></td>
+      <th>df</th>
+      <td><p>Dataframe with column names <code>x</code>, <code>y</code>, <code>xend</code>, <code>yend</code>.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>is the number of inputs</p></td>
+      <th>m</th>
+      <td><p>2x2 matrix.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Dataframe with same column names but coordinates transformed according to <code>m</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

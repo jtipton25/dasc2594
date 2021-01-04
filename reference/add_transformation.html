@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check if value is an integer or integer-like — is_integer • dasc2594</title>
+<title>Add Matrix Transformation — add_transformation • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Check if value is an integer or integer-like — is_integer" />
-<meta property="og:description" content="this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)" />
+<meta property="og:title" content="Add Matrix Transformation — add_transformation" />
+<meta property="og:description" content="Creates list of matrices. If list is inputted then concatenates onto list of matrices." />
 
 
 
@@ -108,30 +108,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check if value is an integer or integer-like</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
-    <div class="hidden name"><code>is_integer.Rd</code></div>
+    <h1>Add Matrix Transformation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/add_transformation.R'><code>R/add_transformation.R</code></a></small>
+    <div class="hidden name"><code>add_transformation.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)</p>
+    <p>Creates list of matrices. If list is inputted then concatenates onto list of matrices.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_integer</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>add_transformation</span><span class='op'>(</span>
+  from <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>1</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,
+  <span class='va'>m</span>,
+  seq_fun <span class='op'>=</span> <span class='fu'>animatrixr</span><span class='fu'>::</span><span class='va'>seq_matrix_l</span>,
+  n_frames <span class='op'>=</span> <span class='fl'>20</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>is the input</p></td>
+      <th>from</th>
+      <td><p>Matrix or list of matrices.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>is the number of inputs</p></td>
+      <th>m</th>
+      <td><p>Matrix transformation.</p></td>
+    </tr>
+    <tr>
+      <th>seq_fun</th>
+      <td><p>The function type for the matrix transformation, <code>animatrixr::seq_matrix_l</code></p></td>
+    </tr>
+    <tr>
+      <th>n_frames</th>
+      <td><p>Number of frames to create explicitly, defaults to 20.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>List of matrices.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check if value is an integer or integer-like — is_integer • dasc2594</title>
+<title>Animate matrix — animate_matrix • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Check if value is an integer or integer-like — is_integer" />
-<meta property="og:description" content="this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)" />
+<meta property="og:title" content="Animate matrix — animate_matrix" />
+<meta property="og:description" content="Animate matrix" />
 
 
 
@@ -108,30 +108,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check if value is an integer or integer-like</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
-    <div class="hidden name"><code>is_integer.Rd</code></div>
+    <h1>Animate matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/animate_matrix.R'><code>R/animate_matrix.R</code></a></small>
+    <div class="hidden name"><code>animate_matrix.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)</p>
+    <p>Animate matrix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_integer</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>animate_matrix</span><span class='op'>(</span>
+  <span class='va'>transformations</span>,
+  points_start <span class='op'>=</span> <span class='cn'>NULL</span>,
+  return_graph_objects <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  return_static <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  datasaurus <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>is the input</p></td>
+      <th>transformations</th>
+      <td><p>List of matrix transformations to apply (length will
+determine total number of explicit frames in animation.)</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>is the number of inputs</p></td>
+      <th>points_start</th>
+      <td><p>Dataframe containing x and y columns of points that will
+be plotted (if any coordinate is greater than magnitude 5, coordinates will
+be automatically scaled down).</p></td>
+    </tr>
+    <tr>
+      <th>return_graph_objects</th>
+      <td><p>Logical indicating whether to return the
+dataframe containing the objects that would have gone into the animation.</p></td>
+    </tr>
+    <tr>
+      <th>return_static</th>
+      <td><p>Logical indicating whether to return the static ggplot
+graph.</p></td>
+    </tr>
+    <tr>
+      <th>datasaurus</th>
+      <td><p>Logical, where <code>TRUE</code> is equivalent to is equivalent to
+setting <code>points_start = filter(datasauRus::datasaurus_dozen, dataset == "dino")</code></p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An animation created by <code>gganimate</code>.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

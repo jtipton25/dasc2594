@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check if value is an integer or integer-like — is_integer • dasc2594</title>
+<title>Transform coordinates — transform_df_coords • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Check if value is an integer or integer-like — is_integer" />
-<meta property="og:description" content="this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)" />
+<meta property="og:title" content="Transform coordinates — transform_df_coords" />
+<meta property="og:description" content="Given dataframe, column names of coordinates, and a transformation matrix,
+return dataframe with transformed coordinates." />
 
 
 
@@ -108,30 +109,39 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check if value is an integer or integer-like</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
-    <div class="hidden name"><code>is_integer.Rd</code></div>
+    <h1>Transform coordinates</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/construct_transform_coordinates.R'><code>R/construct_transform_coordinates.R</code></a></small>
+    <div class="hidden name"><code>transform_df_coords.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>this function checks if the input is an integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)</p>
+    <p>Given dataframe, column names of coordinates, and a transformation matrix,
+return dataframe with transformed coordinates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is_integer</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>transform_df_coords</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>...</span>, m <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>is the input</p></td>
+      <th>df</th>
+      <td><p>Dataframe with coordinates.</p></td>
     </tr>
     <tr>
-      <th>n</th>
-      <td><p>is the number of inputs</p></td>
+      <th>...</th>
+      <td><p>Column names where coordinates are (Will be treated as x, y, ...).
+Column names not supplied will be unchanged.</p></td>
+    </tr>
+    <tr>
+      <th>m</th>
+      <td><p>Matrix transformation to apply.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Dataframe with transformed coordinates.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
