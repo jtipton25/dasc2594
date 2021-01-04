@@ -19,7 +19,10 @@ Imports:
     purrr,
     ggplot2,
     gganimate,
-    tidyr
+    tibble,
+    tidyr,
+    tidyselect,
+    tidyverse
 Suggests: 
     covr,
     datasauRus,

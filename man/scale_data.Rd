@@ -18,5 +18,6 @@ A dataframe that has been scaled so that the largest value in a numeric column i
 Helper function for adding coordinates onto animation of transformation.
 }
 \examples{
+library(tibble)
 scale_data(tibble(x = 1:10, y = -1:-10))
 }

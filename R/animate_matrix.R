@@ -14,6 +14,11 @@
 #'   "dino")`
 #'
 #' @return An animation created by `gganimate`.
+#' @import ggplot2
+#' @import gganimate
+#' @import tidyverse
+#' @import tidyr
+#' @import tidyselect
 #' @export
 #'
 animate_matrix <-function(transformations,
@@ -21,6 +26,9 @@ animate_matrix <-function(transformations,
                           return_graph_objects = FALSE,
                           return_static = FALSE,
                           datasaurus = FALSE){
+
+  # bind variables
+  dataset <- NULL
 
   grid_start <- construct_grid() %>%
     mutate(id = row_number())
@@ -42,12 +50,12 @@ animate_matrix <-function(transformations,
            basis = map(transform, transform_segment, df = basis_start))
 
   grid_all <- graph_objects %>%
-    select(time, grids) %>%
-    unnest(grids)
+    select(.data$time, .data$grids) %>%
+    unnest(.data$grids)
 
   basis_all <- graph_objects %>%
-    select(time, basis) %>%
-    unnest(basis)
+    select(.data$time, .data$basis) %>%
+    unnest(.data$basis)
 
   if(datasaurus){
     points_start <- filter(datasauRus::datasaurus_dozen, dataset == "dino")
@@ -57,7 +65,7 @@ animate_matrix <-function(transformations,
 
     if(!all(c("x", "y") %in% colnames(points_start))) stop("'x' and 'y' columns must be in `points_start`")
 
-    if(5 <= max(abs(select(points_start, where(is.numeric))))){
+    if(5 <= max(abs(select(points_start, vars_select_helpers$where(is.numeric))))){
       points_start <- scale_data(points_start)
       message("x, y coordinates of `points_start` scaled so that maximum magnitude is 5.")
     }
@@ -66,11 +74,11 @@ animate_matrix <-function(transformations,
       mutate(id = max(basis_start$id) + row_number())
 
     graph_objects <- graph_objects %>%
-      mutate(points = map(transform, ~transform_df_coords(points_start, x, y, m = .x)))
+      mutate(points = map(transform, ~transform_df_coords(points_start, .data$x, .data$y, m = .x)))
 
     points_all <- graph_objects %>%
-      select(time, points) %>%
-      unnest(points)
+      select(.data$time, .data$points) %>%
+      unnest(.data$points)
   }
 
   if(return_graph_objects) return(graph_objects)
@@ -78,9 +86,9 @@ animate_matrix <-function(transformations,
   x_breaks <- unique(grid_start$x)
   y_breaks <- unique(grid_start$y)
 
-  p <- ggplot(aes(x = x, y = y, group = id), data = grid_all)+
-    geom_segment(aes(xend = xend, yend = yend))+
-    geom_segment(aes(xend = xend, yend = yend, colour = vec), arrow = arrow(length = unit(0.02, "npc")), size = 1.2, data = basis_all)+
+  p <- ggplot(aes(x = .data$x, y = .data$y, group = id), data = grid_all)+
+    geom_segment(aes(xend = .data$xend, yend = .data$yend))+
+    geom_segment(aes(xend = .data$xend, yend = .data$yend, colour = .data$vec), arrow = arrow(length = unit(0.02, "npc")), size = 1.2, data = basis_all)+
     scale_x_continuous(breaks = x_breaks, minor_breaks = NULL)+
     scale_y_continuous(breaks = y_breaks, minor_breaks = NULL)+
     coord_fixed()+
@@ -93,7 +101,7 @@ animate_matrix <-function(transformations,
 
   if(return_static) return(p)
 
-  p_anim <- p + gganimate::transition_states(time, state_length = 0, wrap = FALSE)
+  p_anim <- p + gganimate::transition_states(.data$time, state_length = 0, wrap = FALSE)
 
   gganimate::animate(p_anim, duration = 5, start_pause = 10, end_pause = 10)
 }

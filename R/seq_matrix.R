@@ -7,6 +7,7 @@
 #' @param ... Passed into `seq()` function, generally should only input `length.out`.
 #'
 #' @return List of matrices.
+#' @import purrr
 #' @export
 #'
 seq_matrix_l <- function(from, to, ...){

@@ -13,6 +13,7 @@ find_angle <- function(m) {
 #' @param theta Angle in radians.
 #'
 #' @return 2x2 matrix.
+#' @importFrom tibble tribble
 #' @export
 rotation_matrix <- function(theta){
   tribble(~ x, ~ y,

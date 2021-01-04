@@ -13,13 +13,13 @@ construct_grid <- function(xintercepts = -5:5, yintercepts = -5:5){
     crossing(x = xintercepts,
              y = min(yintercepts),
              yend = max(yintercepts)) %>%
-      mutate(xend = x),
+      mutate(xend = .data$x),
     crossing(y = yintercepts,
              x = min(xintercepts),
              xend = max(xintercepts)) %>%
-      mutate(yend = y)
+      mutate(yend = .data$y)
   ) %>%
-    select(x, y, xend, yend)
+    select(.data$x, .data$y, .data$xend, .data$yend)
 }
 
 #' Transform coordinates
@@ -33,6 +33,7 @@ construct_grid <- function(xintercepts = -5:5, yintercepts = -5:5){
 #' @param m Matrix transformation to apply.
 #'
 #' @return Dataframe with transformed coordinates.
+#' @import tibble
 #' @export
 #'
 transform_df_coords <- function(df, ..., m = diag(length(df))){
@@ -73,8 +74,8 @@ transform_df_coords <- function(df, ..., m = diag(length(df))){
 #'
 transform_segment <- function(df, m){
   df %>%
-    transform_df_coords(x, y, m = m) %>%
-    transform_df_coords(xend, yend, m = m)
+    transform_df_coords(.data$x, .data$y, m = m) %>%
+    transform_df_coords(.data$xend, .data$yend, m = m)
 }
 
 #' Scale Data Frame
@@ -85,11 +86,15 @@ transform_segment <- function(df, m){
 #' @param limit Maximum magnitude value in range of coordinates after scaling, defaults to 5.
 #'
 #' @return A dataframe that has been scaled so that the largest value in a numeric column is 5.
+#' @import dplyr
+#' @import tidyselect
 #' @export
 #'
-#' @examples scale_data(tibble(x = 1:10, y = -1:-10))
+#' @examples
+#' library(tibble)
+#' scale_data(tibble(x = 1:10, y = -1:-10))
 scale_data <- function(data, limit = 5){
-  max_magnitude <- max(abs(select(data, where(is.numeric))))
+  max_magnitude <- max(abs(select(data, vars_select_helpers$where(is.numeric))))
   scale_factor <- limit / max_magnitude
-  mutate(data, across(where(is.numeric), ~.x * scale_factor))
+  mutate(data, across(vars_select_helpers$where(is.numeric), ~.x * scale_factor))
 }

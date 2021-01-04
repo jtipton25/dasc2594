@@ -7,7 +7,7 @@
 add_transformation(
   from = matrix(c(1, 0, 0, 1), nrow = 2),
   m,
-  seq_fun = animatrixr::seq_matrix_l,
+  seq_fun = seq_matrix_l,
   n_frames = 20
 )
 }
@@ -16,7 +16,7 @@ add_transformation(
 
 \item{m}{Matrix transformation.}
 
-\item{seq_fun}{The function type for the matrix transformation, \code{animatrixr::seq_matrix_l}}
+\item{seq_fun}{The function type for the matrix transformation, \code{seq_matrix_l}}
 
 \item{n_frames}{Number of frames to create explicitly, defaults to 20.}
 }

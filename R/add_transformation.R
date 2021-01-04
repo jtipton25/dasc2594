@@ -4,15 +4,16 @@
 #'
 #' @param from Matrix or list of matrices.
 #' @param m Matrix transformation.
-#' @param seq_fun The function type for the matrix transformation, `animatrixr::seq_matrix_l`
+#' @param seq_fun The function type for the matrix transformation, `seq_matrix_l`
 #' @param n_frames Number of frames to create explicitly, defaults to 20.
 #'
 #' @return List of matrices.
+#' @import dplyr
 #' @export
 #'
 add_transformation <- function(from = matrix(c(1,0,0,1), nrow = 2),
                                m,
-                               seq_fun = animatrixr::seq_matrix_l,
+                               seq_fun = seq_matrix_l,
                                n_frames = 20){
 
   if (is.list(from)){
