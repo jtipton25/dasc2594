@@ -18,7 +18,8 @@ Imports:
     dplyr,
     purrr,
     ggplot2,
-    gganimate
+    gganimate,
+    tidyr
 Suggests: 
     covr,
     datasauRus,
