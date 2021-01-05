@@ -27,7 +27,7 @@ rref <- function(A) {
         pivot <- r + pivot - 1
         m <- abs(A[pivot, i])
         if (m <= tol) {
-            warning("The algorithm might be numerically unstable. Treat the output with skepticism.")
+            # warning("The algorithm might be numerically unstable. Treat the output with skepticism.")
             A[r:nr, i] <- 0  # zeros(nr-r+1, 1)
         } else {
             A[c(pivot, r), i:nc] <- A[c(r, pivot), i:nc]

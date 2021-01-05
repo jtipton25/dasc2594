@@ -15,7 +15,7 @@ test_that("rref", {
 
     A <- matrix(1:9 * 10^-200, 3, 3)
     A[2, 2] <- 2e210
-    expect_warning(rref(A))
+    # expect_warning(rref(A))
 
 
 })
