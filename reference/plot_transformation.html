@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • dasc2594</title>
+<title>plot_transformation — plot_transformation • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="plot_transformation — plot_transformation" />
+<meta property="og:description" content="plot_transformation" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,120 +106,33 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>plot_transformation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/plot_transformation.R'><code>R/plot_transformation.R</code></a></small>
+    <div class="hidden name"><code>plot_transformation.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>plot_transformation</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>plot_transformation</span><span class='op'>(</span><span class='va'>transformation_matrix</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="add_transformation.html">add_transformation()</a></code> </p>
-        </td>
-        <td><p>Add Matrix Transformation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="animate_matrix.html">animate_matrix()</a></code> </p>
-        </td>
-        <td><p>Animate matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="array_to_latex.html">array_to_latex()</a></code> </p>
-        </td>
-        <td><p>Convert an R array into LaTeX for easy writing in Rmarkdown</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="construct_grid.html">construct_grid()</a></code> </p>
-        </td>
-        <td><p>Create coordinates for a grid.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_angle.html">find_angle()</a></code> </p>
-        </td>
-        <td><p>Return angle of rotation of matrix.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot_transformation.html">plot_transformation()</a></code> </p>
-        </td>
-        <td><p>plot_transformation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rotation_matrix.html">rotation_matrix()</a></code> </p>
-        </td>
-        <td><p>Create Rotation Matrix</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rref.html">rref()</a></code> </p>
-        </td>
-        <td><p>Compute the reduced row echelon form</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="scale_data.html">scale_data()</a></code> </p>
-        </td>
-        <td><p>Scale Data Frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="seq_matrix_l.html">seq_matrix_l()</a></code> </p>
-        </td>
-        <td><p>Sequence of Matrices, Linear</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="seq_matrix_lp.html">seq_matrix_lp()</a></code> </p>
-        </td>
-        <td><p>Sequence of Matrices, Linear and Polar</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="seq_matrix_rotate_first.html">seq_matrix_rotate_first()</a></code> </p>
-        </td>
-        <td><p>Sequence of Matrices, polar followed by linear</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="transform_df_coords.html">transform_df_coords()</a></code> </p>
-        </td>
-        <td><p>Transform coordinates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="transform_segment.html">transform_segment()</a></code> </p>
-        </td>
-        <td><p>Transform Coordinates of Segment</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>transformation_matrix</th>
+      <td><p>A matrix describing the transformation to animate</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>An animation created by <code>gganimate</code>.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
