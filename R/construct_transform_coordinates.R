@@ -49,10 +49,15 @@ transform_df_coords <- function(df, ..., m = diag(length(df))){
     as.matrix() %>%
     t()
 
+  # df_coords_new <- (m %*% df_matrix) %>%
+  #   t() %>%
+  #   as_tibble() %>%
+  #   set_names(df_coords_names)
   df_coords_new <- (m %*% df_matrix) %>%
     t() %>%
-    as_tibble() %>%
-    set_names(df_coords_names)
+    magrittr::set_colnames(df_coords_names) %>%
+    as_tibble()
+
 
   df_other <- df %>%
     select(-one_of(df_coords_names))
