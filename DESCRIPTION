@@ -19,6 +19,7 @@ Imports:
     purrr,
     ggplot2,
     gganimate,
+    magrittr,
     tibble,
     tidyr,
     tidyselect,

@@ -23,8 +23,8 @@ plot_transformation <- function(transformation_matrix) {
 
     grid_trans <- grid_start %>%
         # need to `transform_df_coords()` twice as each segment is made up of 2 points
-        transform_df_coords(x, y, m = transformation_matrix) %>%
-        transform_df_coords(xend, yend, m = transformation_matrix)
+        transform_df_coords(.data$x, .data$y, m = transformation_matrix) %>%
+        transform_df_coords(.data$xend, .data$yend, m = transformation_matrix)
 
     grid_all <- bind_rows(
         mutate(grid_start, time = 1),
@@ -45,8 +45,8 @@ plot_transformation <- function(transformation_matrix) {
         mutate(id = nrow(grid_start) + row_number())
 
     basis_trans <- basis_start %>%
-        transform_df_coords(x, y, m = transformation_matrix) %>%
-        transform_df_coords(xend, yend, m = transformation_matrix)
+        transform_df_coords(.data$x, .data$y, m = transformation_matrix) %>%
+        transform_df_coords(.data$xend, .data$yend, m = transformation_matrix)
 
     basis_all <- bind_rows(
         mutate(basis_start, time = 1),
@@ -63,9 +63,9 @@ plot_transformation <- function(transformation_matrix) {
     ##
     ## Define the animation
     ##
-    p <- ggplot(aes(x = x, y = y, group = id), data = grid_all)+
-        geom_segment(aes(xend = xend, yend = yend))+
-        geom_segment(aes(xend = xend, yend = yend, colour = vec), data = basis_all, arrow = arrow(length = unit(0.02, "npc")), size = 1.2)+
+    p <- ggplot(aes(x = .data$x, y = .data$y, group = id), data = grid_all)+
+        geom_segment(aes(xend = .data$xend, yend = .data$yend))+
+        geom_segment(aes(xend = .data$xend, yend = .data$yend, colour = .data$vec), data = basis_all, arrow = arrow(length = unit(0.02, "npc")), size = 1.2)+
         scale_x_continuous(breaks = x_breaks, minor_breaks = NULL)+
         scale_y_continuous(breaks = y_breaks, minor_breaks = NULL)+
         coord_fixed()+

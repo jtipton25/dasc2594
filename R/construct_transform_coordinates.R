@@ -34,6 +34,7 @@ construct_grid <- function(xintercepts = -5:5, yintercepts = -5:5){
 #'
 #' @return Dataframe with transformed coordinates.
 #' @import tibble
+#' @importFrom magrittr set_colnames
 #' @export
 #'
 transform_df_coords <- function(df, ..., m = diag(length(df))){
