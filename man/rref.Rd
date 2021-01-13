@@ -4,10 +4,12 @@
 \alias{rref}
 \title{Compute the reduced row echelon form}
 \usage{
-rref(A)
+rref(A, num_flops = FALSE)
 }
 \arguments{
 \item{A}{a matrix}
+
+\item{num_flops}{Should the number of floating point operations be returned?}
 }
 \value{
 A matrix in reduced row echelon form

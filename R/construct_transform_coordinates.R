@@ -49,10 +49,12 @@ transform_df_coords <- function(df, ..., m = diag(length(df))){
     as.matrix() %>%
     t()
 
+  # older code that threw a warning
   # df_coords_new <- (m %*% df_matrix) %>%
   #   t() %>%
   #   as_tibble() %>%
   #   set_names(df_coords_names)
+
   df_coords_new <- (m %*% df_matrix) %>%
     t() %>%
     magrittr::set_colnames(df_coords_names) %>%
