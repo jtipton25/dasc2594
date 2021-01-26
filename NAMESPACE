@@ -3,6 +3,7 @@
 export(add_transformation)
 export(animate_matrix)
 export(array_to_latex)
+export(array_to_system)
 export(construct_grid)
 export(find_angle)
 export(plot_transformation)
