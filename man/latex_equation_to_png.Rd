@@ -12,6 +12,8 @@ latex_equation_to_png(A, b, file = NULL, format = "system of equations")
 \item{b}{A vector to convert to Latex format}
 
 \item{file}{The file location to save the pdf output}
+
+\item{format}{The kind of equation to plot. The options are "system of euqations", "matrix equation", or "vector equation"}
 }
 \value{
 A string that can be put into an Rmarkdown document by using \code{cat()} to direct the output

@@ -3,6 +3,7 @@
 #' @param A An array to convert to Latex format
 #' @param b A vector to convert to Latex format
 #' @param file The file location to save the pdf output
+#' @param format The kind of equation to plot. The options are "system of euqations", "matrix equation", or "vector equation"
 #'
 #' @return A string that can be put into an Rmarkdown document by using `cat()` to direct the output
 #' @export
