@@ -4,10 +4,12 @@
 \alias{array_to_latex}
 \title{Convert an R array into \LaTeX for easy writing in Rmarkdown}
 \usage{
-array_to_latex(A)
+array_to_latex(A, fraction = FALSE)
 }
 \arguments{
 \item{A}{An array to convert to Latex format}
+
+\item{fraction}{An option of whether to print the result as a decimal or fracion}
 }
 \value{
 A string that can be put into an Rmarkdown document by using \code{cat()} to direct the output
