@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Scale Data Frame — scale_data • dasc2594</title>
+<title>Calculate a random elementary matrix — elementary_matrix_sequence • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Scale Data Frame — scale_data" />
-<meta property="og:description" content="Helper function for adding coordinates onto animation of transformation." />
+<meta property="og:title" content="Calculate a random elementary matrix — elementary_matrix_sequence" />
+<meta property="og:description" content="Calculate a random elementary matrix" />
 
 
 
@@ -108,50 +108,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Scale Data Frame</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/construct_transform_coordinates.R'><code>R/construct_transform_coordinates.R</code></a></small>
-    <div class="hidden name"><code>scale_data.Rd</code></div>
+    <h1>Calculate a random elementary matrix</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/elementary_matrix.R'><code>R/elementary_matrix.R</code></a></small>
+    <div class="hidden name"><code>elementary_matrix_sequence.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Helper function for adding coordinates onto animation of transformation.</p>
+    <p>Calculate a random elementary matrix</p>
     </div>
 
-    <pre class="usage"><span class='fu'>scale_data</span><span class='op'>(</span><span class='va'>data</span>, limit <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>elementary_matrix_sequence</span><span class='op'>(</span><span class='va'>n</span>, <span class='va'>k</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>Dataframe containing at least one numeric column.</p></td>
+      <th>n</th>
+      <td><p>The size of the elementary matrix (an n times n matrix)</p></td>
     </tr>
     <tr>
-      <th>limit</th>
-      <td><p>Maximum magnitude value in range of coordinates after scaling, defaults to 5.</p></td>
+      <th>k</th>
+      <td><p>The number of elemenatry row operations to perform</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>A logical value that determines whether to print the output</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A dataframe that has been scaled so that the largest value in a numeric column is 5.</p>
+    <p>An product of elementary matrices, the inverse of the produce of elementary matrices, and the full sequence of elementary matrices</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
-<span class='fu'>scale_data</span><span class='op'>(</span><span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span><span class='op'>:</span><span class='op'>-</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 10 x 2</span><span>
-#&gt;        x     y
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>   0.5  -</span><span style='color: #BB0000;'>0.5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>   1    -</span><span style='color: #BB0000;'>1</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>   1.5  -</span><span style='color: #BB0000;'>1.5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>   2    -</span><span style='color: #BB0000;'>2</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>   2.5  -</span><span style='color: #BB0000;'>2.5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>   3    -</span><span style='color: #BB0000;'>3</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>   3.5  -</span><span style='color: #BB0000;'>3.5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>   4    -</span><span style='color: #BB0000;'>4</span><span>  
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>   4.5  -</span><span style='color: #BB0000;'>4.5</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>   5    -</span><span style='color: #BB0000;'>5</span><span>  </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
