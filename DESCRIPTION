@@ -20,6 +20,7 @@ Imports:
     ggplot2,
     gganimate,
     magrittr,
+    MASS,
     plotly,
     tibble,
     tidyr,
