@@ -6,7 +6,7 @@
 #' @param a The point at which to evaluate the tangent plane in the x-axis coordinates.
 #' @param b The point at which to evaluate the tangent plane in the y-axis coordinates.
 #' @param target_fun The function \eqn{f(x, y)} of interest.
-#' @param grad_fun The gradient \eqn{\nabla f(x, y)}{} of the function \eqn{f(x, y)}.
+#' @param grad_fun The gradient \eqn{\nabla f(x, y)}{(d/dx f(x,y), d/dy f(x,y))} of the function \eqn{f(x, y)}.
 #'
 #' @return A vector of values that represent the tangent plane at each input value of `x` and `y`.
 #' @export
@@ -32,7 +32,7 @@ tangent_plane <- function(x, y, a, b, target_fun, grad_fun) {
 #' Plot the function \eqn{f(x, y)} and the tangent plane of \eqn{f(x, y)} at a point \eqn{(a, b)}
 #'
 #' @param target_fun The function \eqn{f(x, y)} of interest.
-#' @param grad_fun The gradient \eqn{\nabla f(x, y)} of the function \eqn{f(x, y)}.
+#' @param grad_fun The gradient \eqn{\nabla f(x, y)}{(d/dx f(x,y), d/dy f(x,y))} of the function \eqn{f(x, y)}.
 #' @param a The point at which to evaluate the tangent plane in the x-axis coordinates.
 #' @param b The point at which to evaluate the tangent plane in the y-axis coordinates.
 #' @param n The number of grid points at which to evaluate the function \eqn{f(x, y)} and the tangent plane of \eqn{f(x, y)}
@@ -55,8 +55,6 @@ tangent_plane <- function(x, y, a, b, target_fun, grad_fun) {
 #' plot_tangent_plane(target_fun = target_fun, grad_fun = grad_fun, a=-1, b = 1)
 
 plot_tangent_plane <- function(target_fun, grad_fun, a = 3, b = 2, n = 50, xlim = c(-4, 4), ylim = c(-4, 4)) {
-    library(tidyverse)
-    library(plotly)
 
     # tangent plane
     if (!is_numeric(a, 1))
@@ -72,7 +70,7 @@ plot_tangent_plane <- function(target_fun, grad_fun, a = 3, b = 2, n = 50, xlim 
         # apply the function to the grid
         mutate(z = target_fun(x, y)) %>%
         # calculate the tangent plane
-        mutate(z2 = tangent_plane(x, y, a, b, target = target_fun, grad = grad_fun))
+        mutate(z2 = tangent_plane(x, y, a, b, target_fun = target_fun, grad_fun = grad_fun))
 
 
     plot_ly(x = x, y = y, z = matrix(dat$z, n, n)) %>%

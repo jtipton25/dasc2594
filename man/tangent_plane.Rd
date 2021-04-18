@@ -17,7 +17,7 @@ tangent_plane(x, y, a, b, target_fun, grad_fun)
 
 \item{target_fun}{The function \eqn{f(x, y)} of interest.}
 
-\item{grad_fun}{The gradient \eqn{\nabla f(x, y)} of the function \eqn{f(x, y)}.}
+\item{grad_fun}{The gradient \eqn{\nabla f(x, y)}{} of the function \eqn{f(x, y)}.}
 }
 \value{
 A vector of values that represent the tangent plane at each input value of \code{x} and \code{y}.
