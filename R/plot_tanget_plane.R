@@ -6,7 +6,7 @@
 #' @param a The point at which to evaluate the tangent plane in the x-axis coordinates.
 #' @param b The point at which to evaluate the tangent plane in the y-axis coordinates.
 #' @param target_fun The function \eqn{f(x, y)} of interest.
-#' @param grad_fun The gradient \eqn{\nabla f(x, y)} of the function \eqn{f(x, y)}.
+#' @param grad_fun The gradient \eqn{\nabla f(x, y)}{} of the function \eqn{f(x, y)}.
 #'
 #' @return A vector of values that represent the tangent plane at each input value of `x` and `y`.
 #' @export
