@@ -51,7 +51,7 @@ array_to_system <- function(A, b) {
 
             if (k == 1) {
                 if (A[j, k] < 0) {
-                    values[k] <- "-"
+                    values[k] <- A[j, k]
                 }
             }
             row_strings[j] <- paste(row_strings[j], values[k], variables[k], seperator[k])
