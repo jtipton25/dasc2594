@@ -33,11 +33,13 @@ test_that("eps", {
 })
 
 test_that("array_to_latex", {
-    expect_error(array_to_latex(1:10))
-    expect_error(array_to_latex(array(1:20, dim = c(2, 5, 2))))
-    expect_error(array_to_latex(1))
+    expect_error(array_to_latex(1:10), "Input matrix A must be a matrix.")
+    expect_error(array_to_latex(array(1:20, dim = c(2, 5, 2))), "Input matrix A must be a matrix.")
+    expect_error(array_to_latex(1), "Input matrix A must be a matrix.")
+    expect_error(array_to_latex(matrix("A", 2, 2), fraction = TRUE), "Input matrix A must be a matrix of numeric values when fraction = TRUE.")
+    expect_error(array_to_latex(matrix(1:4, 2, 2), fraction = "a"), "fraction must be a logical input.")
 
-    expect_identical(array_to_latex(matrix("A", 2, 2)), "\\begin{pmatrix} A & A \\\\ A & A \\end{pmatrix}")
+    expect_identical(array_to_latex(matrix("A", 2, 2), fraction = FALSE), "\\begin{pmatrix} A & A \\\\ A & A \\end{pmatrix}")
     expect_identical(array_to_latex(matrix(1:4, 2, 2)), "\\begin{pmatrix} 1 & 3 \\\\ 2 & 4 \\end{pmatrix}")
     expect_identical(array_to_latex(matrix(1:6, 3, 2)), "\\begin{pmatrix} 1 & 4 \\\\ 2 & 5 \\\\ 3 & 6 \\end{pmatrix}")
 
