@@ -45,8 +45,14 @@ array_to_system <- function(A, b) {
                     seperator[k] <- "& {}{} &"
                 }
             }
-            if (A[j, k] %in% c(-1, 0, 1)) {
+            if (A[j, k] %in% c(0, 1)) {
                 values[k] <- ""
+            }
+
+            if (k == 1) {
+                if (A[j, k] < 0) {
+                    values[k] <- A[j, k]
+                }
             }
             row_strings[j] <- paste(row_strings[j], values[k], variables[k], seperator[k])
 

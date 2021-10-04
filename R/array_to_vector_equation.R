@@ -27,14 +27,21 @@ array_to_vector_equation <- function(A, b) {
     variables <- paste0("x_", 1:ncols)
     eqn_tex <- ""
     for (j in 1:(ncols-1)) {
-        eqn_tex <- paste(eqn_tex, variables[j], "\\begin{pmatrix}",
-              paste(A[, j], collapse = " \\\\ "),
-              "\\end{pmatrix} + ")
+        eqn_tex <- paste(eqn_tex, "\\begin{pmatrix}",
+                         paste(A[, j], collapse = " \\\\ "),
+                         "\\end{pmatrix}", variables[j], " + ")
+
+        # eqn_tex <- paste(eqn_tex, variables[j], "\\begin{pmatrix}",
+        #       paste(A[, j], collapse = " \\\\ "),
+        #       "\\end{pmatrix} + ")
 
     }
-    eqn_tex <- paste(eqn_tex, variables[ncols], "\\begin{pmatrix}",
-                             paste(A[, ncols], collapse = " \\\\ "),
-                             "\\end{pmatrix} =")
+    eqn_tex <- paste(eqn_tex, "\\begin{pmatrix}",
+                     paste(A[, ncols], collapse = " \\\\ "),
+                     "\\end{pmatrix}", variables[ncols], " =")
+    # eqn_tex <- paste(eqn_tex, variables[ncols], "\\begin{pmatrix}",
+    #                          paste(A[, ncols], collapse = " \\\\ "),
+    #                          "\\end{pmatrix} =")
     eqn_tex <- paste(eqn_tex, "\\begin{pmatrix}",
                      paste(b, collapse = " \\\\ "),
                      "\\end{pmatrix}")
