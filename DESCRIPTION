@@ -11,7 +11,7 @@ Description: A set of functions for use in DASC 2594
 License: GPL (>=3)
 Depends: R (>= 3.5.0)
 Roxygen: list(markdown = TRUE)    
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -35,4 +35,3 @@ Suggests:
 VignetteBuilder: knitr
 URL: https://github.com/jtipton25/dasc2594
 BugReports: https://github.com/jtipton25/dasc2594/issues
-    

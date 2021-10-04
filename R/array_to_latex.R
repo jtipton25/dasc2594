@@ -12,7 +12,7 @@
 #'
 #' # within Rmarkdown chunk
 #' # cat(latex_string)
-array_to_latex <- function(A, fraction = FALSE){
+array_to_latex <- function(A, fraction = TRUE){
     # From https://data-and-the-world.onrender.com/posts/matrix-to-latex/
     if (!is.matrix(A))
         stop("Input parameter 'A' must be a matrix.")

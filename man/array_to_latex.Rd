@@ -4,7 +4,7 @@
 \alias{array_to_latex}
 \title{Convert an R array into \LaTeX for easy writing in Rmarkdown}
 \usage{
-array_to_latex(A, fraction = FALSE)
+array_to_latex(A, fraction = TRUE)
 }
 \arguments{
 \item{A}{An array to convert to Latex format}

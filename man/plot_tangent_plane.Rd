@@ -17,7 +17,7 @@ plot_tangent_plane(
 \arguments{
 \item{target_fun}{The function \eqn{f(x, y)} of interest.}
 
-\item{grad_fun}{The gradient \eqn{\nabla f(x, y)} of the function \eqn{f(x, y)}.}
+\item{grad_fun}{The gradient \eqn{\nabla f(x, y)}{(d/dx f(x,y), d/dy f(x,y))} of the function \eqn{f(x, y)}.}
 
 \item{a}{The point at which to evaluate the tangent plane in the x-axis coordinates.}
 
