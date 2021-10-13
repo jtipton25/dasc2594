@@ -14,13 +14,15 @@
 #' # cat(latex_string)
 array_to_latex <- function(A, fraction = TRUE){
     # From https://data-and-the-world.onrender.com/posts/matrix-to-latex/
-    if (!is.matrix(A))
-        stop("Input matrix A must be a matrix.")
+    if (!(is.matrix(A) | is.vector(A)))
+        stop("Input matrix A must be a vector or a matrix.")
     if (!is.logical(fraction))
         stop("fraction must be a logical input.")
     if (fraction == TRUE)
         if (!is.numeric(A))
             stop("Input matrix A must be a matrix of numeric values when fraction = TRUE.")
+
+    A <- as.matrix(A)
     rows <- NULL
     if (fraction) {
         rows <- apply(as.character(fractions(A)), MARGIN = 1, paste, collapse = " & ")
