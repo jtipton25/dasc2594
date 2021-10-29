@@ -47,3 +47,18 @@ test_that("array_to_latex", {
     expect_identical(array_to_latex(matrix(1:6, 3, 2)), "\\begin{pmatrix} 1 & 4 \\\\ 2 & 5 \\\\ 3 & 6 \\end{pmatrix}")
 
 })
+
+
+test_that("is_basis", {
+    expect_error(is_basis(rep(1, 4)), "B must be a square numeric matrix.")
+    expect_error(is_basis(matrix(0, 3, 4)), "B must be a square numeric matrix.")
+    expect_error(is_basis(array(0, dim = c(3, 4, 2))), "B must be a square numeric matrix.")
+    expect_error(is_basis(matrix("a", 3, 3)), "B must be a square numeric matrix.")
+
+    expect_true(is_basis(matrix(1:4, 2, 2)))
+    expect_true(is_basis(matrix(c(6, 5, 1, 8, 7, 9, 4, 3, 2), 3, 3)))
+    expect_true(is_basis(diag(3)))
+    expect_true(is_basis(diag(5)))
+    expect_true(is_basis(diag(10)))
+    expect_false(is_basis(matrix(1, 3, 3)))
+})
