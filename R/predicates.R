@@ -103,8 +103,35 @@ is_positive_integer <- function(x, n) {
     is_integer(x, n) && all(x > 0)
 }
 
+#' Check if value is a nonnegative integer or integer-like
+#'
+#' this function checks if the input is a positive integer scalar (integer-like value -- i.e., both 1L and 1.0 pass this check)
+#' @param x is the input
+#' @param n is the number of inputs
+#' @keywords internal
 
+is_nonnegative_integer <- function(x, n) {
+    is_integer(x, n) && all(x >= 0)
+}
 
+#' Check if input is a vector or a matrix with one column
+#'
+#' this function checks if the input is aa matrix with one column
+#' @param x is the input
+#' @keywords internal
+
+is_vector <- function(x) {
+    if (!is.vector(x) & !is.matrix(x))
+        return(FALSE)
+    if (is.matrix(x))
+        if (ncol(x) != 1)
+            return(FALSE)
+    if (is.list(x))
+        return(FALSE)
+
+    return(TRUE)
+
+}
 
 
 

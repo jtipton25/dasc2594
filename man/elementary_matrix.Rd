@@ -4,14 +4,21 @@
 \alias{elementary_matrix}
 \title{Calculate a random elementary matrix}
 \usage{
-elementary_matrix(n, operation = NULL, verbose = FALSE)
+elementary_matrix(
+  n,
+  operation = NULL,
+  verbose = FALSE,
+  prob = c(1/6, 1/6, 2/3)
+)
 }
 \arguments{
 \item{n}{The size of the elementary matrix (an n times n matrix)}
 
-\item{operation}{If specifiec, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".}
+\item{operation}{If specified, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".}
 
 \item{verbose}{A logical value that determines whether to print the output}
+
+\item{prob}{If specified, the probability of applying a row swap, row_multiplication, or row addition operation}
 }
 \value{
 An elementary matrix

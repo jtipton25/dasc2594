@@ -2,16 +2,17 @@
 #'
 #' @param n The size of the elementary matrix (an n times n matrix)
 #' @param verbose A logical value that determines whether to print the output
-#' @param operation If specifiec, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".
+#' @param operation If specified, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".
+#' @param prob If specified, the probability of applying a row swap, row_multiplication, or row addition operation
 #' @return An elementary matrix
 #' @export
 #'
-elementary_matrix <- function(n, operation = NULL, verbose = FALSE) {
+elementary_matrix <- function(n, operation = NULL, verbose = FALSE, prob = c(1/6, 1/6, 2/3)) {
     # add in option to get a specific row operation
 
     # check if a valid operation
     if (is.null(operation)) {
-        operation <- sample(c("row swap", "scalar multiplication", "row addition"), 1)
+        operation <- sample(c("row swap", "scalar multiplication", "row addition"), 1, prob = prob)
     }
     if (!(operation %in% c("row swap", "scalar multiplication", "row addition")))
         stop('operation must be either "row swap", "scalar multiplication", or "row addition"')
@@ -23,7 +24,7 @@ elementary_matrix <- function(n, operation = NULL, verbose = FALSE) {
             message("scalar multiplication")
         #scalar row mult
         row_idx <- sample(1:n, 1, replace = FALSE)
-        E[row_idx, ] <- sample((-9:9)[-10], 1) * E[row_idx, ]
+        E[row_idx, ] <- sample((-4:4)[-5], 1) * E[row_idx, ]
     } else if (operation == "row swap") {
         if (verbose)
             message("row swap")

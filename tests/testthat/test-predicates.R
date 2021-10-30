@@ -103,3 +103,19 @@ test_that("is_positive_integer function", {
     expect_false(is_positive_integer(1:6 + 0.5, 6))
     expect_true(is_positive_integer(matrix(1:6, 3, 2), 6))
 })
+
+
+
+
+test_that("is_vector", {
+    expect_true(is_vector(rep(1, 3)))
+    expect_true(is_vector(1))
+    expect_true(is_vector(matrix(1, 4, 1)))
+
+
+    expect_false(is_vector(matrix(1, 4, 2)))
+    expect_false(is_vector(array(1, dim = c(4, 2, 2))))
+    expect_false(is_vector(list(x = 1, y = 1:4)))
+    expect_false(is.vector(data.frame(x = 1:10)))
+
+})

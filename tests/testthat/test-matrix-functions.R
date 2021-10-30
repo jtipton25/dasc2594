@@ -13,8 +13,8 @@ test_that("rref", {
     A <- rbind(A, 0)
     expect_equal(rref(A), matrix(c(1, 0, 0, 0, 0, 1, 0, 0), 4, 2))
 
-    A <- matrix(1:9 * 10^-200, 3, 3)
-    A[2, 2] <- 2e210
+    # A <- matrix(1:9 * 10^-200, 3, 3)
+    # A[2, 2] <- 2e210
     # expect_warning(rref(A))
 
 
@@ -62,3 +62,174 @@ test_that("is_basis", {
     expect_true(is_basis(diag(10)))
     expect_false(is_basis(matrix(1, 3, 3)))
 })
+
+test_that("make_system_of_equations", {
+
+    set.seed(101)
+    expect_identical(make_system_of_equations(n_equations = 3, n_variables = 4, is_consistent = TRUE),
+                     list(A = structure(c(-1, 4, 7, -1, 4, 0, -7, -7, -8, -7, -7, -1), .Dim = 3:4),
+                          b = structure(c(-49, -14, 29), .Dim = c(3L, 1L)),
+                          x = c(7, 0, 2, 4), is_consistent = TRUE))
+
+    expect_identical(make_system_of_equations(n_equations = 5, n_variables = 2, is_consistent = FALSE),
+                     list(A = structure(c(-2L, -4L, -3L, 0L, 0L, 6L, 0L, 1L, 4L, -2L), .Dim = c(5L, 2L)),
+                          b = structure(c(4, 20, 21, -2, -5), .Dim = c(5L, 1L)),
+                          is_consistent = FALSE))
+
+    expect_identical(make_system_of_equations(n_equations = 2, n_variables = 2, dim_col = 1, dim_null = 1, is_consistent = TRUE),
+                     list(A = structure(c(-7, 0, -7, 0), .Dim = c(2L, 2L)),
+                          b = structure(c(56, 0), .Dim = 2:1),
+                          x = c(-8, 0), is_consistent = TRUE))
+
+    expect_identical(make_system_of_equations(n_equations = 2, n_variables = 2, dim_col = 1, dim_null = 1, is_consistent = FALSE),
+                     list(A = structure(c(6, 4, 6, 4), .Dim = c(2L, 2L)),
+                          b = structure(c(12, 16), .Dim = 2:1),
+                          is_consistent = FALSE))
+
+    # check that the systems of equations have the correct results
+    eq <- make_system_of_equations(2, 2, is_consistent = TRUE)
+    expect_true(is_consistent(eq$A, eq$b))
+    expect_true(is_unique(eq$A, eq$b))
+    expect_equal(eq$A %*% eq$x, eq$b)
+    eq <- make_system_of_equations(5, 2, is_consistent = TRUE)
+    expect_true(is_consistent(eq$A, eq$b))
+    expect_true(is_unique(eq$A, eq$b))
+    expect_equal(eq$A %*% eq$x, eq$b)
+    eq <- make_system_of_equations(3, 5, is_consistent = TRUE)
+    expect_true(is_consistent(eq$A, eq$b))
+    expect_false(is_unique(eq$A, eq$b))
+    expect_equal(eq$A %*% eq$x, eq$b)
+
+    eq <- make_system_of_equations(2, 2, dim_col = 1, dim_null = 1, is_consistent = FALSE)
+    expect_false(is_consistent(eq$A, eq$b))
+    eq <- make_system_of_equations(5, 2, is_consistent = FALSE)
+    expect_false(is_consistent(eq$A, eq$b))
+    eq <- make_system_of_equations(3, 4, dim_col = 2, is_consistent = FALSE)
+    expect_false(is_consistent(eq$A, eq$b))
+
+    # check function inputs
+    expect_error(make_system_of_equations(-1, 1), "n_equations must be a positive integer")
+    expect_error(make_system_of_equations(NULL, 1), "n_equations must be a positive integer")
+    expect_error(make_system_of_equations(NA, 1), "n_equations must be a positive integer")
+    expect_error(make_system_of_equations("a", 1), "n_equations must be a positive integer")
+    expect_error(make_system_of_equations(1:4, 1), "n_equations must be a positive integer")
+    expect_error(make_system_of_equations(matrix(1:4, 2, 2), 1), "n_equations must be a positive integer")
+
+    expect_error(make_system_of_equations(1, -1), "n_variables must be a positive integer")
+    expect_error(make_system_of_equations(1, NULL), "n_variables must be a positive integer")
+    expect_error(make_system_of_equations(1, NA), "n_variables must be a positive integer")
+    expect_error(make_system_of_equations(1, "a"), "n_variables must be a positive integer")
+    expect_error(make_system_of_equations(1, 1:4), "n_variables must be a positive integer")
+    expect_error(make_system_of_equations(1, matrix(1:4, 2, 2)), "n_variables must be a positive integer")
+
+    expect_error(make_system_of_equations(2, 2, dim_col = -1), "dim_col must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_col = NULL), "dim_col must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_col = NA), "dim_col must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_col = "aa"), "dim_col must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_col = 1:4), "dim_col must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_col = matrix(1:4, 2, 2)), "dim_col must be a positive integer")
+
+    expect_error(make_system_of_equations(2, 2, dim_null = -1), "dim_null must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_null = NULL), "dim_null must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_null = NA), "dim_null must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_null = "aa"), "dim_null must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_null = 1:4), "dim_null must be a positive integer")
+    expect_error(make_system_of_equations(2, 2, dim_null = matrix(1:4, 2, 2)), "dim_null must be a positive integer")
+
+    expect_error(make_system_of_equations(2, 2, is_consistent = "a"), "is_consistent must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_consistent = 1), "is_consistent must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_consistent = NA), "is_consistent must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_consistent = c(TRUE, FALSE)), "is_consistent must be either TRUE or FALSE")
+
+    expect_error(make_system_of_equations(2, 2, is_homogeneous = "a"), "is_homogeneous must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_homogeneous = 1), "is_homogeneous must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_homogeneous = NA), "is_homogeneous must be either TRUE or FALSE")
+    expect_error(make_system_of_equations(2, 2, is_homogeneous = c(TRUE, FALSE)), "is_homogeneous must be either TRUE or FALSE")
+
+    # cannot have inconsistent solutions
+    expect_error(make_system_of_equations(2, 2, is_consistent = FALSE), "is_consistent must be TRUE when dim_col = n_equations")
+    expect_error(make_system_of_equations(3, 4, is_consistent = FALSE), "is_consistent must be TRUE when dim_col = n_equations")
+
+    # dim_col + dim_null must equal n_variables
+    expect_error(make_system_of_equations(2, 2, dim_col = 2, dim_null = 1, is_consistent = FALSE), "dim_col \\+ dim_null must equal n_variables")
+
+
+
+})
+
+test_that("is_consistent", {
+    A <- diag(4)
+    b <- 1:4
+    expect_true(is_consistent(A, b))
+
+    A <- matrix(c(1, 0, 0, 0, 1, 0), 3, 2)
+    b <- c(1, 1, 0)
+    expect_true(is_consistent(A, b))
+    b <- c(0, 0, 1)
+    expect_false(is_consistent(A, b))
+
+    A <- matrix(c(1, 0, 0, 1, 1, 1), 2, 3)
+    b <- 1:2
+    expect_true(is_consistent(A, b))
+
+    expect_error(is_consistent(matrix("A", 2, 2), 1:2), "A must be a numeric matrix.")
+    expect_error(is_consistent(matrix(NA, 2, 2), 1:2), "A must be a numeric matrix.")
+    expect_error(is_consistent(1:10, 1:10), "A must be a numeric matrix.")
+    expect_error(is_consistent(array(1:20, dim = c(2, 5, 2)), 1:10), "A must be a numeric matrix.")
+    expect_error(is_consistent(1, 1), "A must be a numeric matrix.")
+
+    expect_error(is_consistent(matrix(1:4, 2, 2), c("aa", "a")), "b must be a numeric vector.")
+    expect_error(is_consistent(matrix(1:4, 2, 2), rep(NA, 2)), "b must be a numeric vector.")
+    expect_error(is_consistent(matrix(1:4, 2, 2), matrix(1:4, 2, 2)), "b must be a numeric vector.")
+    expect_error(is_consistent(matrix(1:4, 2, 2), array(1:4, dim = c(2, 2, 4))), "b must be a numeric vector.")
+
+    expect_error(is_consistent(matrix(1:9, 3, 3), 1:2), "A and b must have the same number of rows.")
+    expect_error(is_consistent(matrix(1:4, 2, 2), 1:3), "A and b must have the same number of rows.")
+
+
+})
+
+test_that("is_unique", {
+    A <- diag(4)
+    b <- 1:4
+    expect_true(is_unique(A, b))
+
+    A <- matrix(c(1, 0, 0, 0, 1, 0), 3, 2)
+    b <- c(1, 1, 0)
+    expect_true(is_unique(A, b))
+    b <- c(0, 0, 0)
+    expect_true(is_unique(A, b))
+    b <- c(0, 0, 1)
+    expect_error(is_unique(A, b), "The system of equations Ax = b must be consistent.")
+
+    A <- matrix(c(1, 0, 0, 1, 1, 1), 2, 3)
+    b <- 1:2
+    expect_false(is_unique(A, b))
+    b <- c(0, 0)
+    expect_false(is_unique(A, b))
+
+
+    expect_error(is_unique(matrix("A", 2, 2), 1:2), "A must be a numeric matrix.")
+    expect_error(is_unique(matrix(NA, 2, 2), 1:2), "A must be a numeric matrix.")
+    expect_error(is_unique(1:10, 1:10), "A must be a numeric matrix.")
+    expect_error(is_unique(array(1:20, dim = c(2, 5, 2)), 1:10), "A must be a numeric matrix.")
+    expect_error(is_unique(1, 1), "A must be a numeric matrix.")
+
+    expect_error(is_unique(matrix(1:4, 2, 2), c("aa", "a")), "b must be a numeric vector.")
+    expect_error(is_unique(matrix(1:4, 2, 2), rep(NA, 2)), "b must be a numeric vector.")
+    expect_error(is_unique(matrix(1:4, 2, 2), matrix(1:4, 2, 2)), "b must be a numeric vector.")
+    expect_error(is_unique(matrix(1:4, 2, 2), array(1:4, dim = c(2, 2, 4))), "b must be a numeric vector.")
+
+    expect_error(is_unique(matrix(1:9, 3, 3), 1:2), "A and b must have the same number of rows.")
+    expect_error(is_unique(matrix(1:4, 2, 2), 1:3), "A and b must have the same number of rows.")
+
+})
+
+
+# test_that("elementary_matrix"{
+#
+# })
+
+# test_that("elementary_matrix_sequence"{
+#
+# })
