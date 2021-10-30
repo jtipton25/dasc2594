@@ -14,7 +14,7 @@
 #' # expect TRUE
 #' is_consistent(A, b)
 #'
-#' A <- matrix(c(1, 0, , 0), 2, 2)
+#' A <- matrix(c(1, 0, 1, 0), 2, 2)
 #' b <- 1:2
 #' # expect FALSE
 #' is_consistent(A, b)
