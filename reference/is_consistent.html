@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate a random elementary matrix — elementary_matrix • dasc2594</title>
+<title>Check if the matrix equation Ax = b is consistent — is_consistent • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Calculate a random elementary matrix — elementary_matrix" />
-<meta property="og:description" content="Calculate a random elementary matrix" />
+<meta property="og:title" content="Check if the matrix equation Ax = b is consistent — is_consistent" />
+<meta property="og:description" content="Check if the matrix equation Ax = b is consistent" />
 
 
 
@@ -108,47 +108,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate a random elementary matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/elementary_matrix.R'><code>R/elementary_matrix.R</code></a></small>
-    <div class="hidden name"><code>elementary_matrix.Rd</code></div>
+    <h1>Check if the matrix equation Ax = b is consistent</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/is_consistent.R'><code>R/is_consistent.R</code></a></small>
+    <div class="hidden name"><code>is_consistent.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate a random elementary matrix</p>
+    <p>Check if the matrix equation Ax = b is consistent</p>
     </div>
 
-    <pre class="usage"><span class='fu'>elementary_matrix</span><span class='op'>(</span>
-  <span class='va'>n</span>,
-  operation <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  prob <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span>, <span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span>, <span class='fl'>2</span><span class='op'>/</span><span class='fl'>3</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>is_consistent</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>b</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>n</th>
-      <td><p>The size of the elementary matrix (an n times n matrix)</p></td>
+      <th>A</th>
+      <td><p>The matrix A</p></td>
     </tr>
     <tr>
-      <th>operation</th>
-      <td><p>If specified, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>A logical value that determines whether to print the output</p></td>
-    </tr>
-    <tr>
-      <th>prob</th>
-      <td><p>If specified, the probability of applying a row swap, row_multiplication, or row addition operation</p></td>
+      <th>b</th>
+      <td><p>The vector b</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An elementary matrix</p>
+    <p>This function returns TRUE if there is a solution to the equation Ax = b and FALSE if there is not a solution to the equation Ax = b</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jtipton25/dasc2594'>dasc2594</a></span><span class='op'>)</span>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/diag.html'>diag</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>
+<span class='co'># expect TRUE</span>
+<span class='fu'>is_consistent</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>b</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>0</span>, , <span class='fl'>0</span><span class='op'>)</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in c(1, 0, , 0): argument 3 is empty</span></div><div class='input'><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>
+<span class='co'># expect FALSE</span>
+<span class='fu'>is_consistent</span><span class='op'>(</span><span class='va'>A</span>, <span class='va'>b</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

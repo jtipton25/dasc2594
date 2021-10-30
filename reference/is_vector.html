@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate a random elementary matrix — elementary_matrix • dasc2594</title>
+<title>Check if input is a vector or a matrix with one column — is_vector • dasc2594</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Calculate a random elementary matrix — elementary_matrix" />
-<meta property="og:description" content="Calculate a random elementary matrix" />
+<meta property="og:title" content="Check if input is a vector or a matrix with one column — is_vector" />
+<meta property="og:description" content="this function checks if the input is aa matrix with one column" />
 
 
 
@@ -108,46 +108,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate a random elementary matrix</h1>
-    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/elementary_matrix.R'><code>R/elementary_matrix.R</code></a></small>
-    <div class="hidden name"><code>elementary_matrix.Rd</code></div>
+    <h1>Check if input is a vector or a matrix with one column</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jtipton25/dasc2594/blob/master/R/predicates.R'><code>R/predicates.R</code></a></small>
+    <div class="hidden name"><code>is_vector.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate a random elementary matrix</p>
+    <p>this function checks if the input is aa matrix with one column</p>
     </div>
 
-    <pre class="usage"><span class='fu'>elementary_matrix</span><span class='op'>(</span>
-  <span class='va'>n</span>,
-  operation <span class='op'>=</span> <span class='cn'>NULL</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  prob <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span>, <span class='fl'>1</span><span class='op'>/</span><span class='fl'>6</span>, <span class='fl'>2</span><span class='op'>/</span><span class='fl'>3</span><span class='op'>)</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>is_vector</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>n</th>
-      <td><p>The size of the elementary matrix (an n times n matrix)</p></td>
-    </tr>
-    <tr>
-      <th>operation</th>
-      <td><p>If specified, operation is a character string specifying what kind of elementary row operation to perform. The options are "row swap", "scalar multiplication", and "row addition".</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>A logical value that determines whether to print the output</p></td>
-    </tr>
-    <tr>
-      <th>prob</th>
-      <td><p>If specified, the probability of applying a row swap, row_multiplication, or row addition operation</p></td>
+      <th>x</th>
+      <td><p>is the input</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An elementary matrix</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
