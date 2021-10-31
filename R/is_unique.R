@@ -21,7 +21,7 @@
 #' A <- matrix(c(1, 0, 0, 1, 1, 1), 2, 3)
 #' b <- 1:2
 #' # expect FALSE
-#' is_uniwue(A, b)
+#' is_unique(A, b)
 is_unique <- function(A, b) {
     if (!is.matrix(A))
         stop("A must be a numeric matrix.")
