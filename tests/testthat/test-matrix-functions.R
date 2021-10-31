@@ -16,6 +16,8 @@ test_that("rref", {
     # A <- matrix(1:9 * 10^-200, 3, 3)
     # A[2, 2] <- 2e210
     # expect_warning(rref(A))
+    A <- matrix(1:4, 2, 2)
+    expect_message(rref(A, num_flops = TRUE), "The number of flops to get RREF was 9")
 
 
 })
@@ -122,6 +124,7 @@ test_that("make_system_of_equations", {
     expect_error(make_system_of_equations(1, 1:4), "n_variables must be a positive integer")
     expect_error(make_system_of_equations(1, matrix(1:4, 2, 2)), "n_variables must be a positive integer")
 
+    expect_error(make_system_of_equations(2, 2, dim_col = 3, dim_null = 1), "dim_col must be no larger than min\\(n_equations, n_variables\\)")
     expect_error(make_system_of_equations(2, 2, dim_col = -1), "dim_col must be a positive integer")
     expect_error(make_system_of_equations(2, 2, dim_col = NULL), "dim_col must be a positive integer")
     expect_error(make_system_of_equations(2, 2, dim_col = NA), "dim_col must be a positive integer")
@@ -129,6 +132,7 @@ test_that("make_system_of_equations", {
     expect_error(make_system_of_equations(2, 2, dim_col = 1:4), "dim_col must be a positive integer")
     expect_error(make_system_of_equations(2, 2, dim_col = matrix(1:4, 2, 2)), "dim_col must be a positive integer")
 
+    expect_error(make_system_of_equations(2, 2, dim_col = 1, dim_null = 2), "dim_col \\+ dim_null must equal n_variables")
     expect_error(make_system_of_equations(2, 2, dim_null = -1), "dim_null must be a positive integer")
     expect_error(make_system_of_equations(2, 2, dim_null = NULL), "dim_null must be a positive integer")
     expect_error(make_system_of_equations(2, 2, dim_null = NA), "dim_null must be a positive integer")
@@ -247,8 +251,11 @@ test_that("make_eigen", {
 test_that("is_invertible", {
     A <- diag(4)
     expect_true(is_invertible(A))
+    A <- matrix(c(0, 1, -1, 0), 2, 2)
+    expect_true(is_invertible(A))
     A <- matrix(1, 3, 3)
     expect_false(is_invertible(A))
+
 
     A <- matrix(c(1, 0, 0, 0, 1, 0), 3, 2)
     expect_error(is_invertible(A), "A must be a square numeric matrix")
