@@ -225,6 +225,42 @@ test_that("is_unique", {
 
 })
 
+test_that("make_eigen", {
+
+    set.seed(2021)
+    expect_equal(make_eigen(3),
+                     list(A = structure(c(-1.8, -1.2, -5.2, -9.2, 0.2, -14.8, 5.4, 0.6, 11.6), .Dim = c(3L, 3L)),
+                          V = structure(c(2L, 1L, 2L, -1L, 1L, 1L, 1L, 0L, 2L), .Dim = c(3L, 3L)),
+                          d = c(-1L, 2L, 9L)))
+
+    expect_error(make_eigen("a"), "n must be a positive integer")
+    expect_error(make_eigen(-1), "n must be a positive integer")
+    expect_error(make_eigen(NA), "n must be a positive integer")
+    expect_error(make_eigen(NULL), "n must be a positive integer")
+    expect_error(make_eigen(TRUE), "n must be a positive integer")
+    expect_error(make_eigen(rep(1, 4)), "n must be a positive integer")
+    expect_error(make_eigen(matrix(1:4, 2, 2)), "n must be a positive integer")
+
+})
+
+
+test_that("is_invertible", {
+    A <- diag(4)
+    expect_true(is_invertible(A))
+    A <- matrix(1, 3, 3)
+    expect_false(is_invertible(A))
+
+    A <- matrix(c(1, 0, 0, 0, 1, 0), 3, 2)
+    expect_error(is_invertible(A), "A must be a square numeric matrix")
+    A <- matrix(c(1, 0, 0, 1, 1, 1), 2, 3)
+    expect_error(is_invertible(A), "A must be a square numeric matrix")
+    expect_error(is_invertible(matrix("A", 2, 2)), "A must be a square numeric matrix")
+    expect_error(is_invertible(matrix(NA, 2, 2)), "A must be a square numeric matrix")
+    expect_error(is_invertible(1:10), "A must be a square numeric matrix")
+    expect_error(is_invertible(array(1:20, dim = c(2, 5, 2))), "A must be a square numeric matrix")
+    expect_error(is_invertible(1), "A must be a square numeric matrix")
+
+})
 
 # test_that("elementary_matrix"{
 #
