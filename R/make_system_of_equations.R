@@ -100,14 +100,33 @@ make_system_of_equations <- function(
             # } else {
                 # the system of equations does not lie in the nullspace
                 # n_equations > n_variables
+
+
+
             if (n_equations > n_variables) {
                 x <- c(sample(-9:9, dim_col), rep(0, dim_null))
                 b <- A %*% x +
-                    rbind(matrix(0, n_variables, n_equations - n_variables), diag(n_equations - n_variables))%*% sample(-9:9, n_equations - n_variables)
+                    rbind(matrix(0, n_variables, n_equations - n_variables), diag(n_equations - n_variables)) %*% sample(-9:9, n_equations - n_variables)
+                rref(cbind(A, b))
             } else {
-                x <- c(sample(-9:9, dim_col), rep(0, dim_null))
-                b <- A %*% x +
-                    rbind(matrix(0, n_equations - dim_col, dim_null), diag(dim_null)) %*% sample(-9:9, dim_null)
+                # find a non-linearly dependent vector using brute force
+                b <- sample(-9:9, n_equations, replace = TRUE)
+                max_iter <- 10e4
+                iter <- 0
+                while (is_consistent(A, b) & iter < max_iter) {
+                    b <- sample(-9:9, n_equations, replace = TRUE)
+                    iter <- iter + 1
+                }
+
+                # B <- - rref(A)[, (dim_col+1):n_variables]
+                # # strip any rows that are all zeros
+                # zeros_idx <- sapply(1:nrow(B), function(i) all(B[i, ] == 0))
+                # B <- B[!zeros_idx, ]
+                # B <- rbind(B, diag(dim_null))
+                # x <- c(sample(-9:9, dim_col), rep(0, dim_null)) + B %*% sample(-9:9, dim_null)
+                # b <- A %*% x
+                # rref(cbind(A, b))
+
             }
             # }
         }

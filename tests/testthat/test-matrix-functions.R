@@ -85,8 +85,9 @@ test_that("make_system_of_equations", {
 
     expect_identical(make_system_of_equations(n_equations = 2, n_variables = 2, dim_col = 1, dim_null = 1, is_consistent = FALSE),
                      list(A = structure(c(6, 4, 6, 4), .Dim = c(2L, 2L)),
-                          b = structure(c(12, 16), .Dim = 2:1),
-                          is_consistent = FALSE))
+                          b = c(2L, 8L), is_consistent = FALSE))
+
+    make_system_of_equations(n_equations = 3, n_variables = 6, dim_col = 2)
 
     # check that the systems of equations have the correct results
     eq <- make_system_of_equations(2, 2, is_consistent = TRUE)
@@ -144,7 +145,6 @@ test_that("make_system_of_equations", {
     expect_error(make_system_of_equations(2, 2, is_consistent = 1), "is_consistent must be either TRUE or FALSE")
     expect_error(make_system_of_equations(2, 2, is_consistent = NA), "is_consistent must be either TRUE or FALSE")
     expect_error(make_system_of_equations(2, 2, is_consistent = c(TRUE, FALSE)), "is_consistent must be either TRUE or FALSE")
-
     expect_error(make_system_of_equations(2, 2, is_homogeneous = "a"), "is_homogeneous must be either TRUE or FALSE")
     expect_error(make_system_of_equations(2, 2, is_homogeneous = 1), "is_homogeneous must be either TRUE or FALSE")
     expect_error(make_system_of_equations(2, 2, is_homogeneous = NA), "is_homogeneous must be either TRUE or FALSE")
