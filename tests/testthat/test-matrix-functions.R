@@ -87,7 +87,6 @@ test_that("make_system_of_equations", {
                      list(A = structure(c(6, 4, 6, 4), .Dim = c(2L, 2L)),
                           b = c(2L, 8L), is_consistent = FALSE))
 
-    make_system_of_equations(n_equations = 3, n_variables = 6, dim_col = 2)
 
     # check that the systems of equations have the correct results
     eq <- make_system_of_equations(2, 2, is_consistent = TRUE)
@@ -155,6 +154,7 @@ test_that("make_system_of_equations", {
     expect_error(make_system_of_equations(3, 4, is_consistent = FALSE), "is_consistent must be TRUE when dim_col = n_equations")
 
     # dim_col + dim_null must equal n_variables
+    expect_error(make_system_of_equations(2, 2, dim_col = 2, dim_null = 1, is_consistent = TRUE), "dim_col \\+ dim_null must equal n_variables")
     expect_error(make_system_of_equations(2, 2, dim_col = 2, dim_null = 1, is_consistent = FALSE), "dim_col \\+ dim_null must equal n_variables")
 
 
@@ -269,6 +269,137 @@ test_that("is_invertible", {
 
 })
 
+
+
+test_that("is_valid_row", {
+
+    expect_error(is_valid_row(rep(1, 4), 1), "A must be a matrix")
+    expect_error(is_valid_row(list(1, 4), 1), "A must be a matrix")
+    expect_error(is_valid_row(data.frame(a = 1:4, b = 1:4, c = 1:4, d = 1:4), 2), "A must be a matrix")
+    expect_error(is_valid_row(array(1, dim = c(4, 2, 3), 1), "A must be a matrix"))
+
+    expect_false(is_valid_row(diag(4), -1))
+    expect_false(is_valid_row(matrix(1, 3, 4), 4))
+    expect_false(is_valid_row(diag(4), 5))
+    expect_false(is_valid_row(diag(4), NA))
+    expect_false(is_valid_row(diag(4), c(1, 1)))
+    expect_false(is_valid_row(diag(4), "a"))
+    expect_false(is_valid_row(diag(4), TRUE))
+    expect_false(is_valid_row(diag(4), FALSE))
+    expect_false(is_valid_row(diag(4), NULL))
+
+    expect_true(is_valid_row(diag(4), 1))
+    expect_true(is_valid_row(diag(4), 3))
+    expect_true(is_valid_row(diag(4), 4))
+    expect_true(is_valid_row(matrix(1, 3, 4), 3))
+})
+
+
+test_that("row_swap", {
+    expect_error(row_swap(diag(4), -1, 2), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), NA, 2), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), c(1, 1), 2), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), "a", 2), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), TRUE, 2), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), NULL, 2), "The rows to be swapped must be valid rows for the matrix A")
+
+    expect_error(row_swap(diag(4), 2, -1), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), 2, NA), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), 2, c(1, 1)), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), 2, "a"), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), 2, TRUE), "The rows to be swapped must be valid rows for the matrix A")
+    expect_error(row_swap(diag(4), 2, NULL), "The rows to be swapped must be valid rows for the matrix A")
+
+
+    expect_error(row_swap(diag(4), 1, 1), "The rows to be swapped must be different")
+    expect_error(row_swap(diag(4), 2, 2), "The rows to be swapped must be different")
+
+    expect_error(row_swap(1, 2, 3), "A must be a matrix")
+    expect_error(row_swap(list(4, 4), 2, 3), "A must be a matrix")
+    expect_error(row_swap(data.frame(a = 1:4, b = 1:4, c = 1:4, d = 1:4), 2, 3), "A must be a matrix")
+    expect_error(row_swap(rep(4, 4), 2, 3), "A must be a matrix")
+    expect_error(row_swap(array(4, dim = c(2, 3, 4)), 2, 3), "A must be a matrix")
+
+
+    expect_identical(row_swap(diag(4), 2, 3),
+                     structure(c(1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
+
+    expect_identical(row_swap(matrix(1:9, 3, 3), 1, 3),
+                     structure(c(3L, 2L, 1L, 6L, 5L, 4L, 9L, 8L, 7L), .Dim = c(3L, 3L)))
+
+})
+
+test_that("row_multiply", {
+    expect_error(row_multiply(diag(4), -1, 2), "The row to be multiplied must be valid for the matrix A")
+    expect_error(row_multiply(diag(4), NA, 2), "The row to be multiplied must be valid for the matrix A")
+    expect_error(row_multiply(diag(4), c(1, 1), 2), "The row to be multiplied must be valid for the matrix A")
+    expect_error(row_multiply(diag(4), "a", 2), "The row to be multiplied must be valid for the matrix A")
+    expect_error(row_multiply(diag(4), TRUE, 2), "The row to be multiplied must be valid for the matrix A")
+    expect_error(row_multiply(diag(4), NULL, 2), "The row to be multiplied must be valid for the matrix A")
+
+    expect_error(row_multiply(1, 2, 3), "A must be a matrix")
+    expect_error(row_multiply(list(4, 4), 2, 3), "A must be a matrix")
+    expect_error(row_multiply(data.frame(a = 1:4, b = 1:4, c = 1:4, d = 1:4), 2, 3), "A must be a matrix")
+    expect_error(row_multiply(rep(4, 4), 2, 3), "A must be a matrix")
+    expect_error(row_multiply(array(4, dim = c(2, 3, 4)), 2, 3), "A must be a matrix")
+
+    expect_error(row_multiply(diag(4), 2, 0), "a must be a non-zero number")
+    expect_error(row_multiply(diag(4), 2, NA), "a must be a non-zero number")
+    expect_error(row_multiply(diag(4), 2, c(1, 1)), "a must be a non-zero number")
+    expect_error(row_multiply(diag(4), 2, "a"), "a must be a non-zero number")
+    expect_error(row_multiply(diag(4), 2, TRUE), "a must be a non-zero number")
+    expect_error(row_multiply(diag(4), 2, NULL), "a must be a non-zero number")
+
+
+
+    expect_identical(row_multiply(diag(4), 2, 3),
+                     structure(c(1, 0, 0, 0, 0, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
+
+    expect_identical(row_multiply(matrix(1:9, 3, 3), 1, -3),
+                     structure(c(-3, 2, 3, -12, 5, 6, -21, 8, 9), .Dim = c(3L, 3L)))
+})
+
+test_that("row_add", {
+
+    expect_error(row_add(diag(4), -1, 2, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), NA, 2, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), c(1, 1), 2, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), "a", 2, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), TRUE, 2, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), NULL, 2, 1), "The rows to be added must be valid rows for the matrix A")
+
+    expect_error(row_add(diag(4), 2, -1, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), 2, NA, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), 2, c(1, 1), 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), 2, "a", 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), 2, TRUE, 1), "The rows to be added must be valid rows for the matrix A")
+    expect_error(row_add(diag(4), 2, NULL, 1), "The rows to be added must be valid rows for the matrix A")
+
+
+    expect_error(row_add(diag(4), 1, 1, 1), "The rows to be added must be different")
+    expect_error(row_add(diag(4), 2, 2, 1), "The rows to be added must be different")
+
+    expect_error(row_add(1, 2, 3, 1), "A must be a matrix")
+    expect_error(row_add(list(4, 4), 2, 3, 1), "A must be a matrix")
+    expect_error(row_add(data.frame(a = 1:4, b = 1:4, c = 1:4, d = 1:4), 2, 3, 1), "A must be a matrix")
+    expect_error(row_add(rep(4, 4), 2, 3, 1), "A must be a matrix")
+    expect_error(row_add(array(4, dim = c(2, 3, 4)), 2, 3, 1), "A must be a matrix")
+
+    expect_error(row_add(diag(4), 2, 1, 0), "a must be a non-zero number")
+    expect_error(row_add(diag(4), 2, 1, NA), "a must be a non-zero number")
+    expect_error(row_add(diag(4), 2, 1, c(1, 1)), "a must be a non-zero number")
+    expect_error(row_add(diag(4), 2, 1, "a"), "a must be a non-zero number")
+    expect_error(row_add(diag(4), 2, 1, TRUE), "a must be a non-zero number")
+    expect_error(row_add(diag(4), 2, 1, NULL), "a must be a non-zero number")
+
+
+    expect_identical(row_add(diag(4), 2, 3, -2),
+                     structure(c(1, 0, 0, 0, 0, 1, 0, 0, 0, -2, 1, 0, 0, 0, 0, 1), .Dim = c(4L, 4L)))
+
+    expect_identical(row_add(matrix(1:9, 3, 3), 1, 3, 2),
+                     structure(c(7, 2, 3, 16, 5, 6, 25, 8, 9), .Dim = c(3L, 3L))
+    )
+})
 # test_that("elementary_matrix"{
 #
 # })
