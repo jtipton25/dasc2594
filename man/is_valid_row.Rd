@@ -12,7 +12,7 @@ is_valid_row(A, row)
 \item{row}{The row to check if it is valid}
 }
 \value{
-\code{is_valid_row} returns TRUE if \code{row} is a valid row for \code{A} and \code{FALSE} otherwise
+\code{is_valid_row()} returns TRUE if \code{row} is a valid row for \code{A} and \code{FALSE} otherwise
 }
 \description{
 Check if the row is valid for the matrix A

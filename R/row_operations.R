@@ -6,14 +6,13 @@
 #'
 #' @return The matrix A of which to swap rows
 #'
-#' A[c(row1, row2), ] <- A[c(row2, row1), ]
 #'
 #' @export
 #'
 #' @examples
 #'
 #' A <- diag(3)
-#' swap_rows(A, 2, 3)
+#' row_swap(A, 2, 3)
 #'
 
 row_swap <- function(A, row1, row2) {
@@ -38,14 +37,13 @@ row_swap <- function(A, row1, row2) {
 #'
 #' @return The matrix A where row1 is added to a times row 2
 #'
-#' A[row, ] <- a * A[row, ]
 #'
 #' @export
 #'
 #' @examples
 #'
 #' A <- diag(3)
-#' multiply_row(A, 2, -2)
+#' row_multiply(A, 2, -2)
 #'
 
 row_multiply <- function(A, row, a) {
@@ -72,14 +70,13 @@ row_multiply <- function(A, row, a) {
 #'
 #' @return The matrix A where row1 is added to a times row 2
 #'
-#' A[row1, ] <- A[row1, ] + a * A[row2, ]
 #'
 #' @export
 #'
 #' @examples
 #'
 #' A <- diag(3)
-#' add_rows(A, 2, 3, -2)
+#' row_add(A, 2, 3, -2)
 #'
 
 row_add <- function(A, row1, row2, a) {

@@ -15,8 +15,6 @@ row_swap(A, row1, row2)
 }
 \value{
 The matrix A of which to swap rows
-
-A\link{c(row1, row2), } <- A\link{c(row2, row1), }
 }
 \description{
 Swap two rows
@@ -24,6 +22,6 @@ Swap two rows
 \examples{
 
 A <- diag(3)
-swap_rows(A, 2, 3)
+row_swap(A, 2, 3)
 
 }

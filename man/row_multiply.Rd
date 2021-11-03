@@ -15,8 +15,6 @@ row_multiply(A, row, a)
 }
 \value{
 The matrix A where row1 is added to a times row 2
-
-A\link{row, } <- a * A\link{row, }
 }
 \description{
 Multiply one row by a scalar
@@ -24,6 +22,6 @@ Multiply one row by a scalar
 \examples{
 
 A <- diag(3)
-multiply_row(A, 2, -2)
+row_multiply(A, 2, -2)
 
 }

@@ -17,8 +17,6 @@ row_add(A, row1, row2, a)
 }
 \value{
 The matrix A where row1 is added to a times row 2
-
-A\link{row1, } <- A\link{row1, } + a * A\link{row2, }
 }
 \description{
 Add one row to a multiple of another row
@@ -26,6 +24,6 @@ Add one row to a multiple of another row
 \examples{
 
 A <- diag(3)
-add_rows(A, 2, 3, -2)
+row_add(A, 2, 3, -2)
 
 }
