@@ -12,6 +12,40 @@
 #' @import tidyselect
 #' @export
 #'
+#' @examples
+#'
+#' library(tidyverse)
+#' library(patchwork)
+#' # create a 2D basis matrix
+#' B1 <- matrix(c(1, 1, 0, 2), 2, 2)
+#' # create a 2D basis matrix
+#' B2 <- matrix(c(1, 2, 2, 1), 2, 2)
+#'
+#' # create a vector with coordinates with respect to the standard basis
+#' x <- c(-1, -2)
+#'
+#' # plot the transformation of basis, and the intermediate transformation to the standard basis
+#' p1 <- plot_change_basis(B1, B2) +
+#'   facet_wrap(~ time,
+#'                labeller = labeller(time = c("1" = "B1", "2" = "B2"))) +
+#'   geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
+#'
+#'  p2 <- plot_change_basis(B1, I) +
+#'    facet_wrap(~ time,
+#'                 labeller = labeller(time = c("1" = "B1", "2" = "I"))) +
+#'    geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
+#'
+#'
+#'    p3 <- plot_change_basis(I, B2) +
+#'    facet_wrap(~ time,
+#'               labeller = labeller(time = c("1" = "I", "2" = "B2"))) +
+#'    geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
+#'
+#' # generate the plot using patchwork
+#' p1 / (p2 + p3)
+
+
+#'
 
 plot_change_basis <- function(B1, B2) {
 
@@ -61,15 +95,9 @@ plot_change_basis <- function(B1, B2) {
     ) %>%
         mutate(id = nrow(grid_start) + row_number())
 
-    basis_start <- tibble(
-        x = c(0, 0),
-        y = c(0, 0),
-        xend = B1[, 1],
-        yend = B1[, 2],
-        # `vec` is unnecessary, will just use to differentiate colors
-        vec = c("i", "j")
-    ) %>%
-        mutate(id = nrow(grid_start) + row_number())
+    basis_start <- basis_standard %>%
+      transform_df_coords(.data$x, .data$y, m = B1) %>%
+      transform_df_coords(.data$xend, .data$yend, m = B1)
 
     basis_end <- basis_standard %>%
         transform_df_coords(.data$x, .data$y, m = B2) %>%
