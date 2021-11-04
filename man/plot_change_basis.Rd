@@ -37,13 +37,13 @@ p1 <- plot_change_basis(B1, B2) +
                labeller = labeller(time = c("1" = "B1", "2" = "B2"))) +
   geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
 
- p2 <- plot_change_basis(B1, I) +
+ p2 <- plot_change_basis(B1, diag(2)) +
    facet_wrap(~ time,
                 labeller = labeller(time = c("1" = "B1", "2" = "I"))) +
    geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
 
 
-   p3 <- plot_change_basis(I, B2) +
+   p3 <- plot_change_basis(diag(2), B2) +
    facet_wrap(~ time,
               labeller = labeller(time = c("1" = "I", "2" = "B2"))) +
    geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
