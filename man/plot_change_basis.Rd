@@ -20,8 +20,8 @@ Plot a change of basis from B1 to B2
 \examples{
 
 library(tidyverse)
-#' if (requireNamespace("patchwork", quietly = TRUE)) {
-library(patchwork)
+if (requireNamespace("patchwork", quietly = TRUE)) {
+  library(patchwork)
 }
 # create a 2D basis matrix
 B1 <- matrix(c(1, 1, 0, 2), 2, 2)
