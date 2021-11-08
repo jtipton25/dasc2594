@@ -61,6 +61,6 @@ array_to_system <- function(A, b) {
 
     }
     row_strings <- paste(row_strings, collapse = "\\\\")
-    return(paste(paste0("\\begin{alignat*}{", ncol(A) + 1, "}"), row_strings, "\\end{alignat*}"))
+    return(paste(paste0("\\begin{alignedat}{", ncol(A) + 1, "}"), row_strings, "\\end{alignedat}"))
 }
 

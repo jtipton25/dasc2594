@@ -30,6 +30,7 @@ Suggests:
     covr,
     datasauRus,
     knitr,
+    patchwork,
     rmarkdown,
     testthat
 URL: https://github.com/jtipton25/dasc2594
