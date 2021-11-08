@@ -88,15 +88,19 @@ plot_change_basis <- function(B1, B2, plot_standard_basis = FALSE) {
   ) %>%
     mutate(id = nrow(grid_start) + row_number())
 
-  basis_start <- tibble(
-    x = c(0, 0),
-    y = c(0, 0),
-    xend = B1[, 1],
-    yend = B1[, 2],
-    # `vec` is unnecessary, will just use to differentiate colors
-    vec = c("i", "j")
-  ) %>%
-    mutate(id = nrow(grid_start) + row_number())
+  # basis_start <- tibble(
+  #   x = c(0, 0),
+  #   y = c(0, 0),
+  #   xend = B1[, 1],
+  #   yend = B1[, 2],
+  #   # `vec` is unnecessary, will just use to differentiate colors
+  #   vec = c("i", "j")
+  # ) %>%
+  #   mutate(id = nrow(grid_start) + row_number())
+
+  basis_start <- basis_standard %>%
+    transform_df_coords(.data$x, .data$y, m = B1) %>%
+    transform_df_coords(.data$xend, .data$yend, m = B1)
 
   basis_end <- basis_standard %>%
     transform_df_coords(.data$x, .data$y, m = B2) %>%
