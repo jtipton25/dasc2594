@@ -4,12 +4,14 @@
 \alias{plot_change_basis}
 \title{plot_change_basis}
 \usage{
-plot_change_basis(B1, B2)
+plot_change_basis(B1, B2, plot_standard_basis = FALSE)
 }
 \arguments{
 \item{B1}{2 by 2 matrix of the initial basis}
 
-\item{B2}{2 by 2 matrix of the initial basis}
+\item{B2}{2 by 2 matrix of the final basis}
+
+\item{plot_standard_basis}{A logical argument where if TRUE, plot the two transformations, first from B1 to the standard basis I and then from standard basis I to B2}
 }
 \value{
 An animation created by \code{gganimate}.
@@ -20,9 +22,7 @@ Plot a change of basis from B1 to B2
 \examples{
 
 library(tidyverse)
-if (requireNamespace("patchwork", quietly = TRUE)) {
-  library(patchwork)
-}
+
 # create a 2D basis matrix
 B1 <- matrix(c(1, 1, 0, 2), 2, 2)
 # create a 2D basis matrix
@@ -32,23 +32,15 @@ B2 <- matrix(c(1, 2, 2, 1), 2, 2)
 x <- c(-1, -2)
 
 # plot the transformation of basis, and the intermediate transformation to the standard basis
-p1 <- plot_change_basis(B1, B2) +
+plot_change_basis(B1, B2) +
   facet_wrap(~ time,
                labeller = labeller(time = c("1" = "B1", "2" = "B2"))) +
   geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
 
- p2 <- plot_change_basis(B1, diag(2)) +
+ plot_change_basis(B1, B2, plot_standard_basis = TRUE) +
    facet_wrap(~ time,
-                labeller = labeller(time = c("1" = "B1", "2" = "I"))) +
+                labeller = labeller(time = c("1" = "B1", "1.5" = "I", "2" = "B2"))) +
    geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
 
-
-   p3 <- plot_change_basis(diag(2), B2) +
-   facet_wrap(~ time,
-              labeller = labeller(time = c("1" = "I", "2" = "B2"))) +
-   geom_segment(aes(x = 0, xend = -1, y = 0, yend = -2), color = "blue")
-
-# generate the plot using patchwork
-p1 / (p2 + p3)
 
 }

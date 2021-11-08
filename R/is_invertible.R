@@ -25,9 +25,11 @@ is_invertible <- function(A) {
         stop("A must be a square numeric matrix")
 
     # if there are complex eigenvalues
-    if (any(is.complex(eigen(A)$values))) {
-        return(!(any(abs(Re(eigen(A)$values)) < .Machine$double.eps^0.5 &
-                         abs(Im(eigen(A)$values)) < .Machine$double.eps^0.5)))
-    }
-    return(!any(eigen(A)$values == 0))
+    # if (any(is.complex(eigen(A)$values))) {
+    #     return(!(any(abs(Re(eigen(A)$values)) < .Machine$double.eps^0.5 &
+    #                      abs(Im(eigen(A)$values)) < .Machine$double.eps^0.5)))
+    # }
+    # return(!any(eigen(A)$values == 0))
+
+    return(qr(A)$rank == ncol(A))
 }
