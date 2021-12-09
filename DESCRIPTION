@@ -22,6 +22,7 @@ Imports:
     magrittr,
     MASS,
     plotly,
+    stringi,
     tibble,
     tidyr,
     tidyselect,
