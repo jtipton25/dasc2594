@@ -13,8 +13,6 @@ is_unique(A, b)
 }
 \value{
 This function returns TRUE if there is a unique solution to the equation Ax = b and FALSE if there is not a unique solution to the equation Ax = b. If there is no solution to the system of equations, the function will return an error.
-
-
 }
 \description{
 Check if the matrix equation Ax = b has a unique solution
