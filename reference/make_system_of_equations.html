@@ -55,60 +55,73 @@ Simulate a systemt of equations Ax = b that is (usually) easy to solve using RRE
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_system_of_equations</span><span class="op">(</span>
-  <span class="va">n_equations</span>,
-  <span class="va">n_variables</span>,
-  dim_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span><span class="op">)</span>,
-  dim_null <span class="op">=</span> <span class="va">n_variables</span> <span class="op">-</span> <span class="va">dim_col</span>,
-  is_consistent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">dim_col</span> <span class="op">==</span> <span class="va">n_equations</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
-  is_homogeneous <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_system_of_equations</span><span class="op">(</span></span>
+<span>  <span class="va">n_equations</span>,</span>
+<span>  <span class="va">n_variables</span>,</span>
+<span>  dim_col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span><span class="op">)</span>,</span>
+<span>  dim_null <span class="op">=</span> <span class="va">n_variables</span> <span class="op">-</span> <span class="va">dim_col</span>,</span>
+<span>  is_consistent <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">dim_col</span> <span class="op">==</span> <span class="va">n_equations</span>, <span class="cn">TRUE</span>, <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  is_homogeneous <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n_equations</dt>
 <dd><p>The number of equations in the system (the number of rows for the matrix A).</p></dd>
+
+
 <dt>n_variables</dt>
 <dd><p>The number of variables in the system (the number of columns for the matrix A).</p></dd>
+
+
 <dt>dim_col</dt>
 <dd><p>The dimension of the column space. Must be between 1 and the minimum of the number of n_equations and n_variables.</p></dd>
+
+
 <dt>dim_null</dt>
 <dd><p>The dimension of the column space. Must be between 1 and the minimum of the number of n_equations and n_variables.</p></dd>
+
+
 <dt>is_consistent</dt>
 <dd><p>Is the system of equations Ax = b consistent (Is there a solution)?</p></dd>
+
+
 <dt>is_homogeneous</dt>
 <dd><p>Is the vector b equal to the 0 vector?</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list that contains the matrix A and the vector b. If the system of equations is not homogeneous or consistent, the list will also contain the solution vector x</p>
+    
+
+<p>A list that contains the matrix A and the vector b. If the system of equations is not homogeneous or consistent, the list will also contain the solution vector x</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">n_equations</span> <span class="op">&lt;-</span> <span class="fl">7</span></span>
-<span class="r-in"><span class="va">n_variables</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in"><span class="va">dim_col</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">dim_null</span> <span class="op">=</span> <span class="va">n_variables</span> <span class="op">-</span> <span class="va">dim_col</span></span>
-<span class="r-in"><span class="va">eq</span> <span class="op">&lt;-</span> <span class="fu">make_system_of_equations</span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span>, dim_col <span class="op">=</span> <span class="fl">2</span>, is_consistent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">eq</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">n_equations</span> <span class="op">&lt;-</span> <span class="fl">7</span></span></span>
+<span class="r-in"><span><span class="va">n_variables</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span><span class="va">dim_col</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dim_null</span> <span class="op">=</span> <span class="va">n_variables</span> <span class="op">-</span> <span class="va">dim_col</span></span></span>
+<span class="r-in"><span><span class="va">eq</span> <span class="op">&lt;-</span> <span class="fu">make_system_of_equations</span><span class="op">(</span><span class="va">n_equations</span>, <span class="va">n_variables</span>, dim_col <span class="op">=</span> <span class="fl">2</span>, is_consistent <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">eq</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ A            : num [1:7, 1:5] 7 0 -11 0 -2 -10 0 1 5 7 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ b            : num [1:7, 1] 68 25 -64 -40 -48 -60 40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ x            : num [1:5] 0 -4 9 0 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ A            : num [1:7, 1:5] 10 5 0 18 -1 13 -2 4 8 6 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ b            : num [1:7, 1] -40 -50 -30 -81 17 -46 4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ x            : num [1:5] 0 -7 0 -2 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ is_consistent: logi TRUE</span>
-<span class="r-in"><span class="fu"><a href="rref.html">rref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">A</span>, <span class="va">eq</span><span class="op">$</span><span class="va">b</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="rref.html">rref</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">A</span>, <span class="va">eq</span><span class="op">$</span><span class="va">b</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3] [,4] [,5] [,6]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]    1    0    1    1    1    9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]    0    1    1    0    2    5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]    1    0    1    1   -1   -2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]    0    1    0   -1    2   -5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3,]    0    0    0    0    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,]    0    0    0    0    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,]    0    0    0    0    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6,]    0    0    0    0    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [7,]    0    0    0    0    0    0</span>
-<span class="r-in"><span class="kw">if</span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">is_consistent</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">eq</span><span class="op">$</span><span class="va">x</span>, <span class="va">eq</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="kw">if</span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">is_consistent</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">eq</span><span class="op">$</span><span class="va">A</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html" class="external-link">%*%</a></span> <span class="va">eq</span><span class="op">$</span><span class="va">x</span>, <span class="va">eq</span><span class="op">$</span><span class="va">b</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 </code></pre></div>
     </div>
@@ -124,7 +137,7 @@ Simulate a systemt of equations Ax = b that is (usually) easy to solve using RRE
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

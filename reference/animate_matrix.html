@@ -50,13 +50,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">animate_matrix</span><span class="op">(</span>
-  <span class="va">transformations</span>,
-  points_start <span class="op">=</span> <span class="cn">NULL</span>,
-  return_graph_objects <span class="op">=</span> <span class="cn">FALSE</span>,
-  return_static <span class="op">=</span> <span class="cn">FALSE</span>,
-  datasaurus <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">animate_matrix</span><span class="op">(</span></span>
+<span>  <span class="va">transformations</span>,</span>
+<span>  points_start <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  return_graph_objects <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  return_static <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  datasaurus <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,23 +64,34 @@
     <dl><dt>transformations</dt>
 <dd><p>List of matrix transformations to apply (length will
 determine total number of explicit frames in animation.)</p></dd>
+
+
 <dt>points_start</dt>
 <dd><p>Dataframe containing x and y columns of points that will
 be plotted (if any coordinate is greater than magnitude 5, coordinates will
 be automatically scaled down).</p></dd>
+
+
 <dt>return_graph_objects</dt>
 <dd><p>Logical indicating whether to return the
 dataframe containing the objects that would have gone into the animation.</p></dd>
+
+
 <dt>return_static</dt>
 <dd><p>Logical indicating whether to return the static ggplot
 graph.</p></dd>
+
+
 <dt>datasaurus</dt>
 <dd><p>Logical, where <code>TRUE</code> is equivalent to is equivalent to
 setting <code>points_start = filter(datasauRus::datasaurus_dozen, dataset == "dino")</code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>An animation created by <code>gganimate</code>.</p>
+    
+
+<p>An animation created by <code>gganimate</code>.</p>
     </div>
 
   </div>
@@ -95,7 +106,7 @@ setting <code>points_start = filter(datasauRus::datasaurus_dozen, dataset == "di
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

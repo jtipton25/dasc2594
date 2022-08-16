@@ -50,35 +50,44 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">row_add</span><span class="op">(</span><span class="va">A</span>, <span class="va">row1</span>, <span class="va">row2</span>, <span class="va">a</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">row_add</span><span class="op">(</span><span class="va">A</span>, <span class="va">row1</span>, <span class="va">row2</span>, <span class="va">a</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>A</dt>
 <dd><p>The matrix of which to add multiple of one row to another</p></dd>
+
+
 <dt>row1</dt>
 <dd><p>The row to be modified</p></dd>
+
+
 <dt>row2</dt>
 <dd><p>The row to be multiplied and added to row1</p></dd>
+
+
 <dt>a</dt>
 <dd><p>The number to multiply by row 2</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>The matrix A where row1 is added to a times row 2</p>
+    
+
+<p>The matrix A where row1 is added to a times row 2</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">row_add</span><span class="op">(</span><span class="va">A</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">row_add</span><span class="op">(</span><span class="va">A</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]    1    0    0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,]    0    1   -2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3,]    0    0    1</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -93,7 +102,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

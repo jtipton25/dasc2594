@@ -50,17 +50,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">make_eigen</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">make_eigen</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>The dimension of the matrix</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with three components. A is the matrix that has eigen
+    
+
+<p>A list with three components. A is the matrix that has eigen
 decomposition A = V D V^-1 where V is a matrix with eigenvectors
 as columns and D = diag(d) is a matrix with corresponding eigenvalues d
 on the diagonal.</p>
@@ -68,20 +71,20 @@ on the diagonal.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu">make_eigen</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">e</span><span class="op">$</span><span class="va">A</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]       [,2]      [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -7.13953488  5.0232558 -3.441860</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.09302326 -0.3488372 -4.372093</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -2.37209302 -4.6046512 -5.511628</span>
-<span class="r-in"><span class="va">e</span><span class="op">$</span><span class="va">V</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">e</span> <span class="op">&lt;-</span> <span class="fu">make_eigen</span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e</span><span class="op">$</span><span class="va">A</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]       [,2]      [,3]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -2.333333 -2.0000000 -1.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  4.074074  1.4444444  5.222222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -7.037037 -0.2222222 -9.111111</span>
+<span class="r-in"><span><span class="va">e</span><span class="op">$</span><span class="va">V</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]   -1   -2    3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]   -1    2    4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]   -2    3   -3</span>
-<span class="r-in"><span class="va">e</span><span class="op">$</span><span class="va">d</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -9 -7  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]    0   -3   -3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,]   -1   -1    4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,]    2    3    2</span>
+<span class="r-in"><span><span class="va">e</span><span class="op">$</span><span class="va">d</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -9 -2  1</span>
 </code></pre></div>
     </div>
   </div>
@@ -96,7 +99,7 @@ on the diagonal.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
