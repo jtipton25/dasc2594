@@ -2,6 +2,7 @@
 #'
 #' @param n The number of rows
 #' @param p The number of columns
+#' @param values A range of values from which to sample with replacement to construct the random matrix
 #'
 #' @return A n by p matrix with random values sampled with replacement from `values`
 #' @export

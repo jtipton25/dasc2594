@@ -10,6 +10,8 @@ random_matrix(n, p, values = -9:9)
 \item{n}{The number of rows}
 
 \item{p}{The number of columns}
+
+\item{values}{A range of values from which to sample with replacement to construct the random matrix}
 }
 \value{
 A n by p matrix with random values sampled with replacement from \code{values}
