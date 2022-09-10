@@ -27,7 +27,7 @@ array_to_matrix_equation <- function(A, b) {
     variables <- paste0("x_", 1:ncols)
 
     eqn_A <- array_to_latex(A)
-    eqn_x <- array_to_latex(as.matrix(variables))
+    eqn_x <- array_to_latex(as.matrix(variables), fraction = FALSE)
     eqn_b <- array_to_latex(as.matrix(b))
     eqn_tex <- paste(eqn_A, eqn_x, " & =", eqn_b, collapse = "")
 
