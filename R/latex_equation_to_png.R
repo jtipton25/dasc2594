@@ -40,7 +40,8 @@ latex_equation_to_png <- function(A, b, file = NULL, format = "system of equatio
 
     eqn_latex <- paste(
         # "\\documentclass[convert={density=600,size=1600x900,outext=.png}]{standalone}",
-        "\\documentclass[convert={density=600,size=1600x900,outext=.png}, preview]{standalone}",
+        # "\\documentclass[convert={density=600,size=1600x900,outext=.png}, preview]{standalone}",
+        "\\documentclass[convert={density=600,size=6400x3600,outext=.png}, preview]{standalone}",
         "\\usepackage{amsmath}",
         # "\\usepackage{standalone}",
         # "\\standaloneconfig{convert={convertexe={convert}}}",
